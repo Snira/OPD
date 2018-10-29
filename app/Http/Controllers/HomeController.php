@@ -27,17 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         $fetcher = new Fetcher;
-        $network_name = $fetcher->serverData();
-        $website_list = $fetcher->websiteList();
+        $dataSet = $fetcher->setData();
 
-
-
-        $plugins =
-
-
-
-
-
-        return view('welcome')->with(['network_name' => $network_name, 'website_list' => $website_list]);
+        return view('home')->with(['data' => $dataSet]);
     }
 }

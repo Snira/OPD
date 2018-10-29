@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use phpseclib\Net\SSH2;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
 
 class Fetcher extends Model
 {
@@ -27,19 +28,32 @@ class Fetcher extends Model
 
     public function websiteList()
     {
+        $websiteList = new Collection();
         $websites = explode("  ", $this->ssh->exec('cd /var/www/html; dir'));
         //Returns an array with all the website domain names
-        foreach($websites as $website){
-            $this->laravelVersion($website);
+
+        foreach ($websites as $website) {
+            $websiteList->push($website . ': ' . $this->laravelVersion($website));
+            //Adds Laravel version to according website
         }
 
-        return $data;
+        return $websiteList;
     }
 
-    public function laravelVersion($website){
+    public function laravelVersion($website)
+    {
         $data = $this->ssh->exec("cd /var/www/html/'$website'; php artisan --version;");
+        if ($this->ssh->getExitStatus()) {
+            return 'Geen framework versie beschikbaar';
+        }
         return $data;
     }
 
-    
+    public function setData()
+    {
+        $dataSet = new Fluent(['server' => $this->serverData(), 'websites' => $this->websiteList()]);
+        return $dataSet;
+    }
+
+
 }

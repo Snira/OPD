@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>OPD</title>
+    <title>Online Privacy Dashboard</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -16,19 +16,17 @@
 
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body>
 <div class="container">
-    <h1>{{$network_name}}</h1>
+
+    <h1>{{$data->server}}</h1>
     <h2>Websites:</h2>
-    <ol> @foreach($website_list as $website)
+    <ol> @foreach($data->websites as $website)
         <li>{{$website}}</li>
         @endforeach
-    </ol>
-    {{--<p> {{$laravel}}</p>--}}
-    {{--<p id="plugins">{{$plugins}}</p>--}}
+
 
 
 </div>
