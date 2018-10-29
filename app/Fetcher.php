@@ -26,21 +26,24 @@ class Fetcher extends Model
         return $this->ssh->exec('uname -n');
     }
 
-    public function websiteList()
+    public function websiteCollection()
     {
-        $websiteList = new Collection();
+        $websiteList = collect();
         $websites = explode("  ", $this->ssh->exec('cd /var/www/html; dir'));
         //Returns an array with all the website domain names
 
         foreach ($websites as $website) {
-            $websiteList->push($website . ': ' . $this->laravelVersion($website));
+            $websiteObject = new Fluent([$website, 'framework' => $this->websiteInstance($website)]);
+            $websiteList->push($websiteObject);
             //Adds Laravel version to according website
         }
 
+
+        dd($websiteList);
         return $websiteList;
     }
 
-    public function laravelVersion($website)
+    public function websiteInstance($website)
     {
         $data = $this->ssh->exec("cd /var/www/html/'$website'; php artisan --version;");
         if ($this->ssh->getExitStatus()) {
@@ -51,7 +54,7 @@ class Fetcher extends Model
 
     public function setData()
     {
-        $dataSet = new Fluent(['server' => $this->serverData(), 'websites' => $this->websiteList()]);
+        $dataSet = new Fluent(['server' => $this->serverData(), 'websites' => $this->websiteCollection()]);
         return $dataSet;
     }
 

@@ -28,6 +28,7 @@ class HomeController extends Controller
     {
         $fetcher = new Fetcher;
         $dataSet = $fetcher->setData();
+        dd($dataSet);
 
         return view('home')->with(['data' => $dataSet]);
     }

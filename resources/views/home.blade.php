@@ -13,20 +13,29 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 </head>
 <body>
+<header>
+    <h1 class="">Online Privacy Dashboard</h1>
+</header>
 <div class="container">
-
-    <h1>{{$data->server}}</h1>
-    <h2>Websites:</h2>
-    <ol> @foreach($data->websites as $website)
-        <li>{{$website}}</li>
-        @endforeach
-
+    <div class="server">
+        <h1 class="h1">{{$data->server}}</h1>
+        <h2 class="h2">Websites:</h2>
+        <ul>
+            @foreach($data->websites as $website)
+                <li>
+                    <h3>{{$website}}</h3>
+                    <p>{{$website->framework}}</p>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 
 
 </div>
