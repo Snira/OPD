@@ -25,12 +25,12 @@
 </header>
 <div class="container">
     <div class="server">
-        <h1 class="h1">{{$data->server}}</h1>
+        <h1 class="h1">{{$data->server->nodename}}</h1>
         <h2 class="h2">Websites:</h2>
         <ul>
             @foreach($data->websites as $website)
                 <li>
-                    <h3>{{$website}}</h3>
+                    <h3>{{$website->name}}</h3>
                     <p>{{$website->framework}}</p>
                 </li>
             @endforeach
