@@ -12,7 +12,6 @@ class Server extends Connection
 
     public function getNodeName()
     {
-//        dd($this->ssh->exec('uname -n'));
         return $this->ssh->exec('uname -n');
 
     }
