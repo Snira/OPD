@@ -5,40 +5,43 @@ namespace App;
 use phpseclib\Net\SSH2;
 use Illuminate\Support\Fluent;
 
-class Website extends Connection
+class Website
 {
-    //Returns collection of websites
-    public function getWebsiteCollection()
+    private $ssh;
+    private $directory;
+
+    public function __construct(SSH2 $ssh, string $directory)
     {
-        $websiteList = collect();
-        $websites = explode("  ", $this->ssh->exec('cd /var/www/html; dir'));
-        //Returns an array with all the website domain names
-
-        foreach ($websites as $website) {
-            $websiteObject = $this->getWebsiteInstance($website);
-            $websiteList->push($websiteObject);
-
-        }
-
-        return $websiteList;
+        $this->ssh = $ssh;
+        $this->directory = $directory;
     }
 
-    //Returns website object
-    public function getWebsiteInstance($website)
+    private function run(string $command)
+    {
+        return $this->ssh->exec("cd /var/www/html/'$this->directory';" . $command);
+    }
+
+
+    /**
+     * Returns website object instance
+     * @return Fluent
+     */
+    public function getWebsiteInstance() : Fluent
     {
         $websiteObject = new Fluent([
-            'name' => $website,
-            'framework' => $this->getlaravelVersion($website)
+            'name' => $this->directory,
+            'framework' => $this->getlaravelVersion()
         ]);
 
         return $websiteObject;
     }
 
     //Adds Laravel version to according websiteObject
-    public function getlaravelVersion($website)
+    public function getlaravelVersion() : string
     {
-        $data = $this->ssh->exec("cd /var/www/html/'$website'; php artisan --version;");
-        if ($this->ssh->getExitStatus()) {
+        $data = $this->run("php artisan --version");
+        if ($this->ssh->getExitStatus())
+        {
             return 'Geen framework versie beschikbaar';
         }
         return $data;

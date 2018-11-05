@@ -24,11 +24,12 @@
     <h1 class="">Online Privacy Dashboard</h1>
 </header>
 <div class="container">
+    @foreach($servers as $server)
     <div class="server">
-        <h1 class="h1">{{$data->server->nodename}}</h1>
+        <h1 class="h1">{{$server->nodename}}</h1>
         <h2 class="h2">Websites:</h2>
         <ul>
-            @foreach($data->websites as $website)
+            @foreach($server->websites as $website)
                 <li>
                     <h3>{{$website->name}}</h3>
                     <p>{{$website->framework}}</p>
@@ -36,7 +37,7 @@
             @endforeach
         </ul>
     </div>
-
+        @endforeach
 
 </div>
 

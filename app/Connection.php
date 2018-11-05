@@ -6,22 +6,19 @@ use phpseclib\Net\SSH2;
 
 class Connection
 {
-    protected $ssh;
-    private $connections = [];
+    private $connections;
 
     public function __construct()
     {
-        $this->ssh = new SSH2();
-        if (!$this->ssh->login('root', 'pos4-boy')) {
-            exit('Login Failed');
-        }
+        $this->setConnections();
     }
 
-    public function setConnections($connections){
-        foreach (config()->get('connections.') as $connection){
-            $connections->push($connection);
-        }
 
+
+    public function getConnections()
+    {
+        return $this->connections;
     }
+
 
 }

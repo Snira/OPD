@@ -3,6 +3,7 @@
 namespace App;
 
 use phpseclib\Net\SSH2;
+use App\Connection;
 use Illuminate\Support\Collection;
 use App\Website;
 use Illuminate\Support\Fluent;
@@ -12,19 +13,20 @@ class Dataset
 {
     protected $server;
     protected $website;
+    protected $ssh;
 
     public function __construct()
     {
-        $this->server = new Server();
-        $this->website = new Website();
+
     }
 
     public function getDataset()
     {
         //Combines all data and puts it in one dataset
-        $dataset = new Fluent(['server' => $this->server->getServerInstance(), 'websites' => $this->website->getWebsiteCollection()]);
-        return $dataset;
+//        $dataset = new Fluent(['server' => $this->server->getServerInstance());
+//        return $dataset;
     }
 
 
 }
+
