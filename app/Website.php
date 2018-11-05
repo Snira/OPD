@@ -18,7 +18,7 @@ class Website
 
     private function run(string $command)
     {
-        return $this->ssh->exec("cd /var/www/html/'$this->directory';" . $command);
+        return $this->ssh->exec("cd /var/www/vhosts/'$this->directory';" . $command);
     }
 
 
