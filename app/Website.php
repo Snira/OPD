@@ -30,20 +30,27 @@ class Website
     {
         $websiteObject = new Fluent([
             'name' => $this->directory,
-            'framework' => $this->getlaravelVersion()
+            'framework' => $this->getFrameworkVersion(),
+//            'plugins' => $this->getPlugins()
         ]);
 
         return $websiteObject;
     }
 
     //Adds Laravel version to according websiteObject
-    public function getlaravelVersion() : string
+    public function getFrameworkVersion() : string
     {
         $data = $this->run("php artisan --version");
         if ($this->ssh->getExitStatus())
         {
             return 'Geen framework versie beschikbaar';
         }
+        return $data;
+    }
+
+    public function getPlugins(){
+        $data = explode("\n", $this->run("composer show"));
+
         return $data;
     }
 }

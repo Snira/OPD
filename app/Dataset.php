@@ -3,7 +3,6 @@
 namespace App;
 
 use phpseclib\Net\SSH2;
-use App\Connection;
 use Illuminate\Support\Collection;
 use App\Website;
 use Illuminate\Support\Fluent;

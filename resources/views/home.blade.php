@@ -25,19 +25,30 @@
 </header>
 <div class="container">
     @foreach($servers as $server)
-    <div class="server">
-        <h1 class="h1">{{$server->nodename}}</h1>
-        <h2 class="h2">Websites:</h2>
-        <ul>
-            @foreach($server->websites as $website)
-                <li>
-                    <h3>{{$website->name}}</h3>
-                    <p>{{$website->framework}}</p>
-                </li>
-            @endforeach
-        </ul>
-    </div>
-        @endforeach
+        <div class="server">
+            <h1 class="h1">{{$server->nodename}}</h1>
+            <p>{{$server->kernelversion}}</p>
+            <hr>
+            <h3 class="h3">Websites</h3>
+            <ul>
+                @foreach($server->websites as $website)
+                    <li>
+                        <h3>{{$website->name}}</h3>
+                        <p>{{$website->framework}}</p>
+
+                        {{--<div id="plugins" class="">--}}
+                        {{--@foreach($website->plugins as $plugin)--}}
+                        {{--<p>{{$plugin}}</p>--}}
+
+
+                        {{--@endforeach--}}
+                        {{--</div>--}}
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
+    @endforeach
 
 </div>
 

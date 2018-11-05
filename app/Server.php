@@ -10,6 +10,7 @@ class Server
     private $ssh;
     public $websites;
     public $nodename;
+    public $kernelversion;
 
     public function __construct($credentials)
     {
@@ -18,6 +19,7 @@ class Server
 
         $this->setWebsiteCollection();
         $this->setNodeName();
+        $this->setKernelVersion();
 
     }
 
@@ -38,6 +40,10 @@ class Server
 
     }
 
+    public function setKernelVersion(){
+        $this->kernelversion = $this->ssh->exec('uname -v');
+    }
+
     /**
      * Sets an array with all the website domain names
      */
@@ -54,7 +60,10 @@ class Server
 
     public function getServerInstance()
     {
-        $serverObject = new Fluent(['nodename' => $this->nodename]);
+        $serverObject = new Fluent([
+            'nodename' => $this->nodename,
+            'kernelversion' => $this->kernelversion
+        ]);
 
         return $serverObject;
     }
