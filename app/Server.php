@@ -16,7 +16,6 @@ class Server
     {
         $this->websites = collect();
         $this->login($credentials);
-
         $this->setWebsiteCollection();
         $this->setNodeName();
         $this->setKernelVersion();
