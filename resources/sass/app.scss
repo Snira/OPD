@@ -7,7 +7,8 @@
 
 
 body{
-  background-image: url("/img/bg-03.jpg");
+  background-image: url("/img/fruit-tomato-vegetable-nature-vegetables.jpg");
+  //background-color: #ff362c;
   color:lightgrey;
 }
 header{
@@ -36,4 +37,34 @@ header{
   background-color: rgba(0,0,0,.6);
   box-shadow: 0 1px 5px rgba(0,0,0,.1);
   border-radius: 5px;
+}
+
+#home{
+  margin-left: 10%;
+  text-decoration: none;
+}
+#home:hover{
+  color:#ff5a2c;
+  text-decoration: none;
+}
+
+.checkmark{
+  margin-top: -2%;
+  height: 30px;
+  width: 30px;
+}
+.link{
+  text-decoration: none !important;
+}
+.link:hover{
+  color:#ff5a2c;
+  text-decoration: none !important;
+}
+
+
+.tooltip.top .tooltip-inner {
+  background-color:rgba(0,0,0,.6);
+}
+.tooltip.top .tooltip-arrow {
+  border-top-color: rgba(0,0,0,.6);
 }

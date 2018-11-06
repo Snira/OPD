@@ -11,6 +11,8 @@ class Server
     public $websites;
     public $nodename;
     public $kernelversion;
+    public $CPUInfo;
+    public $OSVersion;
 
     public function __construct($credentials)
     {
@@ -19,7 +21,8 @@ class Server
         $this->setWebsiteCollection();
         $this->setNodeName();
         $this->setKernelVersion();
-
+        $this->setCPUInfo();
+        $this->setOSVersion();
     }
 
     /**
@@ -39,8 +42,20 @@ class Server
 
     }
 
-    public function setKernelVersion(){
+    public function setKernelVersion()
+    {
         $this->kernelversion = $this->ssh->exec('uname -v');
+    }
+
+    public function setCPUInfo()
+    {
+        $this->CPUInfo = explode("\n", $this->ssh->exec('lscpu'));
+    }
+
+    public function setOSVersion()
+    {
+        $data = $this->ssh->exec('cat /etc/*release');
+        $this->OSVersion = substr($data, 0, strpos($data, "\n"));
     }
 
     /**
