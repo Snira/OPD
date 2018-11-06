@@ -5,10 +5,66 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+body{
+  background-image: url("/img/fruit-tomato-vegetable-nature-vegetables.jpg");
+  //background-color: #ff362c;
+  color:lightgrey;
+}
+header{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.6);
+  height: 72px;
+  color: #fff;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  padding-right: 1.5rem;
+  transition: background-color 1s,box-shadow 1s;
+}
+.container{
+  margin-top: 10%;
+}
+.server{
+  padding: 1.5rem 1.5rem 1.45rem;
+  display: block;
+  margin-bottom: 30px;
+  background-color: rgba(0,0,0,.6);
+  box-shadow: 0 1px 5px rgba(0,0,0,.1);
+  border-radius: 5px;
+}
+
+#home{
+  margin-left: 10%;
+  text-decoration: none;
+}
+#home:hover{
+  color:#ff5a2c;
+  text-decoration: none;
+}
+
+.checkmark{
+  margin-top: -2%;
+  height: 30px;
+  width: 30px;
+}
+.link{
+  text-decoration: none !important;
+}
+.link:hover{
+  color:#ff5a2c;
+  text-decoration: none !important;
+}
+
+
+.tooltip.top .tooltip-inner {
+  background-color:rgba(0,0,0,.6);
+}
+.tooltip.top .tooltip-arrow {
+  border-top-color: rgba(0,0,0,.6);
 }

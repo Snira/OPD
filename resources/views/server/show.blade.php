@@ -1,13 +1,23 @@
 @extends('layouts.app')
 <body>
 <div class="container">
-    @foreach($servers as $server)
-        <div class="server">
-            <a href="{{route('server',$server->nodename)}}" class="h1 link">{{$server->nodename}}</a>
-            <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip" title="Deze Server voldoet 100% aan de AVG!">
+    <div class="server">
+        <div class="server-header">
+            <h1 class="h1">{{$server->nodename}}</h1>
             <p>{{$server->OSVersion}}</p>
-            <hr>
-            <h3 class="h3">Websites</h3>
+            <p>{{$server->kernelversion}}</p>
+
+        </div>
+        <hr>
+        <div>
+            <h2>CPU Info</h2>
+            @foreach($server->CPUInfo as $info)
+                <p>{{$info}}</p>
+            @endforeach
+        </div>
+        <hr>
+        <div>
+            <h2 class="h2">Websites</h2>
             <ul>
                 @foreach($server->websites as $website)
                     <li>
@@ -26,10 +36,8 @@
             </ul>
         </div>
 
-    @endforeach
-
+    </div>
 </div>
 
 
 </body>
-</html>

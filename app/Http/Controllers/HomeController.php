@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Server;
 use Illuminate\Http\Request;
 use phpseclib\Net\SSH2;
-use App\Fetcher;
+use App\Dataset;
 
 
 class HomeController extends Controller
 {
+    protected $servers;
+
     /**
      * Create a new controller instance.
      *
@@ -16,7 +19,10 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
+        $this->servers = collect();
+        foreach (config()->get('connections') as $credentials) {
+            $this->servers->push(new Server($credentials));
+        }
     }
 
     /**
@@ -26,9 +32,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $fetcher = new Fetcher;
-        $dataSet = $fetcher->setData();
+        return view('home')->with(['servers' => $this->servers]);
+    }
 
-        return view('home')->with(['data' => $dataSet]);
+    public function show($nodename)
+    {
+
+        $server = $this->servers->where('nodename', $nodename)->first();
+
+        return view('server.show',['server' => $server]);
     }
 }
