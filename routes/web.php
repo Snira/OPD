@@ -15,4 +15,4 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/{nodename}', 'HomeController@show')->name('server');
-Route::get('/{website}', 'WebsiteController@show')->name('website');
+Route::get('/{nodename}/{website}', 'WebsiteController@show')->name('website');

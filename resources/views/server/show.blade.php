@@ -23,6 +23,7 @@
                     <li>
                         <a class="h3 link" href="{{route('website',$website->name)}}">{{$website->name}}</a>
                         <p>{{$website->framework}}</p>
+                        <p>{{$latestVerions->laravel}}</p>
 
                         {{--<div id="plugins" class="">--}}
                         {{--@foreach($website->plugins as $plugin)--}}

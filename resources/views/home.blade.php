@@ -11,7 +11,7 @@
             <ul>
                 @foreach($server->websites as $website)
                     <li>
-                        <a class="h3 link" href="{{route('website',$website->name)}}">{{$website->name}}</a>
+                        <a class="h3 link" href="{{route('website',[$server->nodename, $website->name])}}">{{$website->name}}</a>
                         <p>{{$website->framework}}</p>
 
                         {{--<div id="plugins" class="">--}}

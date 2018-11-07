@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\URL;
 use phpseclib\Net\SSH2;
 use Illuminate\Support\Fluent;
 
@@ -26,7 +27,7 @@ class Website
      * Returns website object instance
      * @return Fluent
      */
-    public function getWebsiteInstance() : Fluent
+    public function getWebsiteInstance(): Fluent
     {
         $websiteObject = new Fluent([
             'name' => $this->directory,
@@ -38,19 +39,21 @@ class Website
     }
 
     //Adds Laravel version to according websiteObject
-    public function getFrameworkVersion() : string
+    public function getFrameworkVersion(): string
     {
         $data = $this->run("php artisan --version");
-        if ($this->ssh->getExitStatus())
-        {
+        if ($this->ssh->getExitStatus()) {
             return 'Geen framework versie beschikbaar';
         }
         return $data;
     }
 
-    public function getPlugins(){
+    public function getPlugins()
+    {
         $data = explode("\n", $this->run("composer show"));
 
         return $data;
     }
+
+
 }

@@ -72,16 +72,6 @@ class Server
         }
     }
 
-    public function getServerInstance()
-    {
-        $serverObject = new Fluent([
-            'nodename' => $this->nodename,
-            'kernelversion' => $this->kernelversion
-        ]);
-
-        return $serverObject;
-    }
-
 
     public function getWebsiteCollection()
     {
