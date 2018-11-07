@@ -2,14 +2,13 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\URL;
 use phpseclib\Net\SSH2;
-use Illuminate\Support\Fluent;
+
 
 class Website
 {
     private $ssh;
-    private $directory;
+    public $directory;
 
     public function __construct(SSH2 $ssh, string $directory)
     {
@@ -22,24 +21,8 @@ class Website
         return $this->ssh->exec("cd /var/www/vhosts/'$this->directory';" . $command);
     }
 
-
-    /**
-     * Returns website object instance
-     * @return Fluent
-     */
-    public function getWebsiteInstance(): Fluent
-    {
-        $websiteObject = new Fluent([
-            'name' => $this->directory,
-            'framework' => $this->getFrameworkVersion(),
-//            'plugins' => $this->getPlugins()
-        ]);
-
-        return $websiteObject;
-    }
-
     //Adds Laravel version to according websiteObject
-    public function getFrameworkVersion(): string
+    public function frameworkVersion()
     {
         $data = $this->run("php artisan --version");
         if ($this->ssh->getExitStatus()) {
@@ -48,7 +31,7 @@ class Website
         return $data;
     }
 
-    public function getPlugins()
+    public function plugins()
     {
         $data = explode("\n", $this->run("composer show"));
 

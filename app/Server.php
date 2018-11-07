@@ -2,27 +2,16 @@
 
 namespace App;
 
-use Illuminate\Support\Fluent;
 use phpseclib\Net\SSH2;
 
 class Server
 {
+    use HasServerProperties;
     private $ssh;
-    public $websites;
-    public $nodename;
-    public $kernelversion;
-    public $CPUInfo;
-    public $OSVersion;
 
-    public function __construct($credentials)
+    public function __construct(array $credentials)
     {
-        $this->websites = collect();
         $this->login($credentials);
-        $this->setWebsiteCollection();
-        $this->setNodeName();
-        $this->setKernelVersion();
-        $this->setCPUInfo();
-        $this->setOSVersion();
     }
 
     /**
@@ -36,46 +25,31 @@ class Server
         }
     }
 
-    public function setNodeName()
+    private function run(string $command)
     {
-        $this->nodename = $this->ssh->exec('uname -n');
-
-    }
-
-    public function setKernelVersion()
-    {
-        $this->kernelversion = $this->ssh->exec('uname -v');
-    }
-
-    public function setCPUInfo()
-    {
-        $this->CPUInfo = explode("\n", $this->ssh->exec('lscpu'));
-    }
-
-    public function setOSVersion()
-    {
-        $data = $this->ssh->exec('cat /etc/*release');
-        $this->OSVersion = substr($data, 0, strpos($data, "\n"));
+        return $this->ssh->exec($command);
     }
 
     /**
      * Sets an array with all the website domain names
      */
-    public function setWebsiteCollection(): void
+    public function websiteCollection()
     {
-        $directories = explode("\n", $this->ssh->exec('cd /var/www/vhosts; ls | grep \'.nl\''));
+//        $command = 'cd /var/www/vhosts; ls | grep \'.nl\'';
+//        return collect(explode("\n", $this->run($command)))->map(function($directory) {
+//            return new Website($this->ssh, $directory);
+//        })->pop();
+
+
+        $websites = collect();
+        $directories = explode("\n", $this->run('cd /var/www/vhosts; ls | grep \'.nl\''));
         array_pop($directories);
 
         foreach ($directories as $websiteDirectory) {
             $website = new Website($this->ssh, $websiteDirectory);
-            $this->websites->push($website->getWebsiteInstance());
+            $websites->push($website);
         }
-    }
-
-
-    public function getWebsiteCollection()
-    {
-        return $this->websites;
+        return $websites;
     }
 
 

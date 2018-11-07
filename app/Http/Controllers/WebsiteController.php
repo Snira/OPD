@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Server;
-use App\Website;
-use Illuminate\Http\Request;
-use App\Http\Controllers\HomeController;
 use App\LatestVersions;
 
 class WebsiteController extends Controller
@@ -21,11 +17,12 @@ class WebsiteController extends Controller
 
     }
 
-    public function show($nodename, $name)
+    public function show($nodename, $websiteName)
     {
-        $website = website($nodename, $name);
-        $latestVersions = LatestVersions::getInstance();
+        $server = server($nodename);
+        $website = website($server, $websiteName);
 
+        $latestVersions = LatestVersions::instance();
 
         return view('website.show', ['website' => $website, 'latestVersions' => $latestVersions]);
     }

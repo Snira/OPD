@@ -2,21 +2,18 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 final class LatestVersions
 {
     protected static $instance = null;
-    public $laravel;
 
     const LARAVELURL = 'https://packagist.org/packages/laravel/framework.json';
 
     private function __construct()
     {
-        $this->setLatestLaravel();
+
     }
 
-    public static function getInstance()
+    public static function instance()
     {
         if (!static::$instance) {
             static::$instance = new LatestVersions();
@@ -24,17 +21,15 @@ final class LatestVersions
         return static::$instance;
     }
 
-    public function setLatestLaravel()
+    public function latestLaravel()
     {
         $data = json_decode(file_get_contents(self::LARAVELURL), true);
         $versions = $data['package']['versions'];
 
         foreach ($versions as $version) {
             if (substr($version['version'], 0, 1) === "v") {
-                $this->laravel = $version['version'];
-                break;
+                return $version['version'];
             }
         }
-
     }
 }
