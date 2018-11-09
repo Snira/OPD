@@ -17,6 +17,13 @@ class WebsiteController extends Controller
 
     }
 
+    /**
+     * Show Website dashboard.
+     *
+     * @param $nodename
+     * @param $websiteName
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($nodename, $websiteName)
     {
         $server = server($nodename);

@@ -16,12 +16,17 @@ class Website
         $this->directory = $directory;
     }
 
+    /**
+     * Returns output of an SSH command
+     * @param string $command
+     * @return mixed
+     */
     private function run(string $command)
     {
         return $this->ssh->exec("cd /var/www/vhosts/'$this->directory';" . $command);
     }
 
-    //Adds Laravel version to according websiteObject
+    /** Returns Laravel version of website instance */
     public function frameworkVersion()
     {
         $data = $this->run("php artisan --version");
@@ -31,12 +36,26 @@ class Website
         return $data;
     }
 
+    /**
+     *  Returns all used php plugins of website instance
+     *
+     * @return array
+     */
     public function plugins()
     {
         $data = explode("\n", $this->run("composer show"));
 
         return $data;
     }
+
+//    public function mbString()
+//    {
+//        foreach ($this->plugins() as $plugin) {
+//            if (substr($plugin, 0, 25) === "symfony/polyfill-mbstring") {
+//                return $plugin;
+//            }
+//        }
+//    }
 
 
 }

@@ -4,7 +4,7 @@ namespace App;
 
 final class LatestVersions
 {
-    protected static $instance = null;
+    private static $instance = null;
 
     const LARAVELURL = 'https://packagist.org/packages/laravel/framework.json';
 
@@ -13,6 +13,9 @@ final class LatestVersions
 
     }
 
+    /**
+     * @return static::$instance
+     */
     public static function instance()
     {
         if (!static::$instance) {
@@ -21,6 +24,9 @@ final class LatestVersions
         return static::$instance;
     }
 
+    /**
+     * @return mixed
+     */
     public function latestLaravel()
     {
         $data = json_decode(file_get_contents(self::LARAVELURL), true);

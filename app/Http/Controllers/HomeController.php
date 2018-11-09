@@ -28,6 +28,12 @@ class HomeController extends Controller
         return view('home')->with(['servers' => $this->servers]);
     }
 
+    /**
+     * Show the Server dashboard.
+     *
+     * @param $nodeName
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($nodeName)
     {
         $server = server($nodeName);
