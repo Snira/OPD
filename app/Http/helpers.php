@@ -24,6 +24,7 @@ if (!function_exists('servers')) {
  *
  * @param string $nodeName
  *
+ * @return Server $server
  */
 if (!function_exists('server')) {
     function server($nodeName): Server
@@ -42,6 +43,7 @@ if (!function_exists('server')) {
  * @param Server $server
  * @param string $directory
  *
+ * @return Website $website
  */
 if (!function_exists('website')) {
     function website(Server $server, string $directory): Website

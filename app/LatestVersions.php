@@ -6,7 +6,8 @@ final class LatestVersions
 {
     private static $instance = null;
 
-    const LARAVELURL = 'https://packagist.org/packages/laravel/framework.json';
+    const LARAVEL_URL = 'https://packagist.org/packages/laravel/framework.json';
+    const DRUPAL_URL = 'https://packagist.org/packages/drupal/drupal.json';
 
     private function __construct()
     {
@@ -27,13 +28,28 @@ final class LatestVersions
     /**
      * @return mixed
      */
-    public function latestLaravel()
+    public function laravel()
     {
-        $data = json_decode(file_get_contents(self::LARAVELURL), true);
+        $data = json_decode(file_get_contents(self::LARAVEL_URL), true);
         $versions = $data['package']['versions'];
 
         foreach ($versions as $version) {
             if (substr($version['version'], 0, 1) === "v") {
+                return $version['version'];
+            }
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function drupal()
+    {
+        $data = json_decode(file_get_contents(self::DRUPAL_URL), true);
+        $versions = $data['package']['versions'];
+
+        foreach($versions as $version){
+            if(strlen($version['version']) == 5){
                 return $version['version'];
             }
         }

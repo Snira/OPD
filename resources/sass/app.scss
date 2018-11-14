@@ -5,21 +5,30 @@
 // Variables
 @import 'variables';
 
+$White: #F1F1F1;
+$Grey: #7E909A;
+$SoftBlack: #2d0902;
+$Black: #202020;
+$DarkBlue: #1C4E80;
+$LightBlue: #A5D8DD;
+$Orange: #EA6A47;
+$Blue: #0091D5;
 
 body{
-  background-image: url("/img/fruit-tomato-vegetable-nature-vegetables.jpg");
-  //background-color: #ff362c;
-  color:lightgrey;
+  //background-image: url("/img/fruit-tomato-vegetable-nature-vegetables.jpg");
+  background-color: $White;
+  color:$Grey;
+  //font-family: Arial;
 }
 header{
+  color:$White !important;
   position: fixed;
   width: 100%;
   z-index: 100;
   top: 0;
   left: 0;
-  background-color: rgba(0,0,0,.6);
+  background-color: $DarkBlue;
   height: 72px;
-  color: #fff;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
@@ -27,24 +36,42 @@ header{
   padding-right: 1.5rem;
   transition: background-color 1s,box-shadow 1s;
 }
+hr{
+  border-color: $DarkBlue;
+}
+.h1{
+  color: $DarkBlue;
+}
+.h2{
+  color: $Black;
+}
+.h3{
+  color: $Black;
+}
+.h4{
+  color:$Blue;
+}
+
 .container{
   margin-top: 10%;
 }
-.server{
+.block{
   padding: 1.5rem 1.5rem 1.45rem;
   display: block;
-  margin-bottom: 30px;
-  background-color: rgba(0,0,0,.6);
+  margin-bottom: 10px;
+  background-color: whitesmoke;
   box-shadow: 0 1px 5px rgba(0,0,0,.1);
   border-radius: 5px;
 }
 
 #home{
-  margin-left: 10%;
+  color: $White;
+  font-size: 2rem;
+  margin-left: 5%;
   text-decoration: none;
 }
 #home:hover{
-  color:#ff5a2c;
+  color: $Orange;
   text-decoration: none;
 }
 
@@ -57,7 +84,7 @@ header{
   text-decoration: none !important;
 }
 .link:hover{
-  color:#ff5a2c;
+  color: $LightBlue;
   text-decoration: none !important;
 }
 
@@ -66,17 +93,4 @@ header{
 }
 .tooltip.top .tooltip-arrow {
   border-top-color: rgba(0,0,0,.6);
-}
-
-.pagination{
-  background-color: darkgrey;
-  color: black !important;
-}
-.page-link{
-  background-color: grey;
-  color:black !important;
-}
-.page-item{
-  background-color: grey;
-  color:black !important;
 }

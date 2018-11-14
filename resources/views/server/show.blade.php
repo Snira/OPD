@@ -1,9 +1,9 @@
 @extends('layouts.app')
 <body>
 <div class="container">
-    <div class="server">
+    <div class="block">
         <div class="row">
-            <div class="server-header">
+            <div class="block-header">
                 <h1 class="h1">{{$server->nodeName()}}</h1>
                 <p>{{$server->OSVersion()}}</p>
                 <p>{{$server->kernelVersion()}}</p>
@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="server">
+    <div class="block">
         <div class="row">
             <div class="col-6">
                 <h2>CPU Info</h2>
