@@ -30,17 +30,15 @@ class Website
     /** Returns Framework version of website instance */
     public function frameworkVersion()
     {
-        $commands = collect(["php artisan --version", "drush status"]);
+        $commands = collect(["php artisan --version", "drush core-status version"]);
+
         foreach ($commands as $command) {
             $data = $this->run($command);
             if (!$this->ssh->getExitStatus()) {
                 return $data;
-            } elseif ($this->isSubDomain()) {
-                return 'Dit is een subdomein';
-            } else {
-                return 'Geen bekend framework';
             }
         }
+        return 'Geen bekend framework geinstalleerd';
     }
 
     /**
@@ -50,8 +48,9 @@ class Website
      */
     public function plugins()
     {
-        return explode("\n", $this->run("composer show"));
-
+        $data = explode("\n", $this->run("composer show"));
+        $data2 = paginateCollection($data, 5);
+        return $data2;
     }
 
     /**
