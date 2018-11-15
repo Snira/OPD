@@ -36,9 +36,15 @@ header {
   padding-right: 1.5rem;
   transition: background-color 1s, box-shadow 1s;
 }
+nav{
+  color: $White;
+}
 
 hr {
   border-color: $DarkBlue;
+}
+a{
+  color:$White;
 }
 
 .h1 {

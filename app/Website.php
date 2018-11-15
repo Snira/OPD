@@ -64,16 +64,21 @@ class Website
         if (!$this->ssh->getExitStatus()) {
             return true;
         }
+        return false;
     }
 
-//    public function mbString()
-//    {
-//        foreach ($this->plugins() as $plugin) {
-//            if (substr($plugin, 0, 25) === "symfony/polyfill-mbstring") {
-//                return $plugin;
-//            }
-//        }
-//    }
+    public function subDomains(){
+        $websites = collect();
+        $directories = explode("\n", $this->run('cd /var/www/vhosts/'. $this->directory. '; ls | grep \'.nl\''));
+        array_pop($directories);
+
+        foreach ($directories as $websiteDirectory) {
+            $website = new Website($this->ssh, $websiteDirectory);
+            $websites->push($website);
+        }
+        $data = paginateCollection($websites,5);
+        return $data;
+    }
 
 
 }

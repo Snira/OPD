@@ -6,7 +6,7 @@
             <div class="block-header">
                 <h1 class="h1">{{$server->nodeName()}}</h1>
                 <p>{{$server->OSVersion()}}</p>
-                <p>{{$server->kernelVersion()}}</p>
+                <p>{{$server->kernelVersion()}}<i class="fa fa-exclamation-circle" data-toggle="tooltip" title="Het updaten van een kernel is belangrijk voor de beveiliging van de server"></i></p>
 
             </div>
         </div>
@@ -42,7 +42,7 @@
                     @foreach($server->websiteCollection() as $website)
                         @if($website->isSubDomain())
                         <li>
-                            <a class="h3 link"
+                            <a class="h4 link"
                                href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
                             <p>{{$website->frameworkVersion()}}</p>
                             @endif

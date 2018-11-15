@@ -31,7 +31,7 @@ class WebsiteController extends Controller
 
         $latestVersions = LatestVersions::instance();
 
-        return view('website.show', ['website' => $website, 'latestVersions' => $latestVersions]);
+        return view('website.show', ['website' => $website, 'server' => $server ,'latestVersions' => $latestVersions]);
     }
 
 
