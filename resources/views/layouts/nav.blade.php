@@ -13,7 +13,7 @@
                 <li class="nav-item active">
                     <a class="link" href="{{route('home')}}">&nbsp; Home &nbsp;</a>
                 </li>
-                @if(isset($server) && \Route::currentRouteName() == 'server')
+                @if(isset($server) && \Route::currentRouteName() == 'server' || \Route::currentRouteName() == 'website')
                     <li class="nav-item">
                         >
                         <a class="link" href="{{route('server', [$server->nodeName()])}}">{{$server->nodeName()}} &nbsp;</a>
