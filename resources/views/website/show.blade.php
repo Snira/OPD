@@ -14,16 +14,15 @@
         </div>
         <div class="col-6">
             <div class="block">
-                <h2 class="h2">Plugins en helpers van {{$website->directory}}</h2>
-                <div id="plugins" class="">
+                <h2 class="h2">Plugins</h2>
+                <ul id="plugins" class="">
                     @foreach($website->plugins() as $plugin)
-                        <p>{{$plugin}}</p>
+                        <li><p>{{$plugin}}</p></li>
                     @endforeach
 
-                    {{$website->plugins()->setPath($website->directory)->render()}}
-                </div>
+                </ul>
             </div>
-
+            {{$website->plugins()->setPath($website->directory)->render()}}
         </div>
 
     </div>

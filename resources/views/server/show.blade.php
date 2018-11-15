@@ -15,10 +15,12 @@
     <div class="block">
         <div class="row">
             <div class="col-6">
-                <h2>CPU Info</h2>
-                @foreach($server->CPUInfo() as $info)
-                    <p>{{$info}}</p>
-                @endforeach
+                <h2 class="h2">CPU Info</h2>
+                <ul>
+                    @foreach($server->CPUInfo() as $info)
+                        <li>{{$info}}</li>
+                    @endforeach
+                </ul>
             </div>
 
             <div class="col-6">
@@ -27,7 +29,7 @@
                     @foreach($server->websiteCollection() as $website)
                         @if(!$website->isSubDomain())
                         <li>
-                            <a class="h3 link"
+                            <a class="h4 link"
                                href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
                             <p>{{$website->frameworkVersion()}}</p>
                         </li>
