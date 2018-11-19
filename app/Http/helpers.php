@@ -53,6 +53,20 @@ if (!function_exists('website')) {
 }
 
 
+if (!function_exists('directory')) {
+    function directory(Server $server, string $directory)
+    {
+        foreach($server->websiteCollection() as $item){
+            if ($item instanceof \App\Directory){
+                if($item->directory == $directory){
+                   return $item;
+                }
+            }
+        }
+    }
+}
+
+
 
 /**
  * Returns paginated collection

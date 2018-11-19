@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\LatestVersions;
+use App\Website;
 
 class WebsiteController extends Controller
 {
@@ -31,10 +32,11 @@ class WebsiteController extends Controller
     }
 
 
-    public function subDomain($nodename, $websiteName)
+    public function subDomain($nodename, $domainName, $websiteName)
     {
         $server = server($nodename);
-        $website = website($server, $websiteName);
+        $directory = directory($server, $domainName);
+        $website = $directory->website($websiteName);
 
 
         return view('website.show', ['website' => $website, 'server' => $server ,'latestVersions' => $this->latestVersions]);

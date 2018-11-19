@@ -16,4 +16,4 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/{nodename}', 'HomeController@show')->name('server');
 Route::get('/{nodename}/{website}', 'WebsiteController@website')->name('website');
-Route::get('/{nodename}/directory/{website}', 'WebsiteController@subDomain')->name('subdomain');
+Route::get('/{nodename}/{website}/{directory}', 'WebsiteController@subDomain')->name('subdomain');

@@ -53,18 +53,4 @@ class Website
         return $data2;
     }
 
-    /**
-     * Checks if directory is subdomain
-     *
-     * @return string
-     */
-    public function isSubDomain()
-    {
-        $this->run('cd bin;');
-        if (!$this->ssh->getExitStatus()) {
-            return true;
-        }
-        return false;
-    }
-
 }

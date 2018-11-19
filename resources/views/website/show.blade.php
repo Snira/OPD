@@ -39,7 +39,7 @@
                     <h2 class="h2">Domeinen</h2>
                     <ul id="plugins" class="">
                         @foreach($website->subDomains() as $domain)
-                            <li><a class="link blue" href="{{route('subdomain', [$server->nodeName(), $website->directory . '/' . $domain->directory])}}">{{$domain->directory}}</a></li>
+                            <li><a class="link blue" href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a></li>
                         @endforeach
 
                     </ul>
