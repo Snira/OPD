@@ -27,6 +27,12 @@ class Website
         return $this->ssh->exec("cd /var/www/vhosts/'$this->directory';" . $command);
     }
 
+    public function name()
+    {
+        $arr = explode("/", $this->directory, 2);
+        return $arr[1];
+    }
+
     /** Returns Framework version of website instance */
     public function frameworkVersion()
     {

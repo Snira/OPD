@@ -13,16 +13,16 @@
                 <li class="nav-item active">
                     <a class="link" href="{{route('home')}}">&nbsp; Home &nbsp;</a>
                 </li>
-                @if(isset($server) && \Route::currentRouteName() == 'server' || \Route::currentRouteName() == 'website')
+                @if(isset($server) && \Route::currentRouteName() == 'server' || \Route::currentRouteName() == 'website' || \Route::currentRouteName() == 'subdomain')
                     <li class="nav-item">
                         >
                         <a class="link" href="{{route('server', [$server->nodeName()])}}">{{$server->nodeName()}} &nbsp;</a>
                     </li>
                 @endif
-                @if(isset($website)&& \Route::currentRouteName() == 'website')
+                @if(isset($website)&& \Route::currentRouteName() == 'website' || \Route::currentRouteName() == 'subdomain')
                     <li class="nav-item">
                         >
-                        <a class="link" href="{{route('server', [$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
+                        <a class="link" href="{{route('server', [$server->nodeName(), $website->name()])}}">{{$website->name()}}</a>
                     </li>
                 @endif
                 {{--<li class="nav-item">--}}

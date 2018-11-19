@@ -43,7 +43,7 @@
                         @if($website instanceof \App\Directory)
                         <li>
                             <a class="h4 link"
-                               href="{{route('subdomain',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
+                               href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
 
                             @endif
                         </li>

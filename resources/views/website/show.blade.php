@@ -2,13 +2,21 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-6">
-            <div class="block">
-                <a href="https://{{$website->directory}}" target="_blank" class="h1 link" data-toggle="tooltip"
-                   title="Klik om de website te openen">{{$website->directory}}</a>
+        <div class="col-12">
+            <div class="head">
+                <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
+                   title="Klik om de website te openen">{{$website->name()}}</a>
                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                      title="Deze Website voldoet aan de regelgeving">
+            </div>
+
+        </div>
+
+        <div class="col-6">
+            <div class="block">
+
                 @if($website instanceof \App\Website)
+                    <h2 class="h2">Algemene Info</h2>
                 <p>{{$website->frameworkVersion()}}</p>
                 <p>*nieuwste versie is {{$latestVersions->laravel()}}</p>
                 @else
