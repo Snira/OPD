@@ -6,15 +6,11 @@ use App\LatestVersions;
 
 class WebsiteController extends Controller
 {
+    public $latestVersions;
 
     public function __construct()
     {
-
-    }
-
-    public function index()
-    {
-
+        $this->latestVersions = LatestVersions::instance();
     }
 
     /**
@@ -24,14 +20,25 @@ class WebsiteController extends Controller
      * @param $websiteName
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($nodename, $websiteName)
+
+    public function website($nodename, $websiteName)
     {
         $server = server($nodename);
         $website = website($server, $websiteName);
 
-        $latestVersions = LatestVersions::instance();
 
-        return view('website.show', ['website' => $website, 'server' => $server ,'latestVersions' => $latestVersions]);
+        return view('website.show', ['website' => $website, 'server' => $server ,'latestVersions' => $this->latestVersions]);
+    }
+
+
+    public function subDomain($nodename, $websiteName)
+    {
+        $server = server($nodename);
+        $website = website($server, $websiteName);
+
+
+        return view('website.show', ['website' => $website, 'server' => $server ,'latestVersions' => $this->latestVersions]);
+
     }
 
 

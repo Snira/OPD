@@ -67,18 +67,4 @@ class Website
         return false;
     }
 
-    public function subDomains(){
-        $websites = collect();
-        $directories = explode("\n", $this->run('cd /var/www/vhosts/'. $this->directory. '; ls | grep \'.nl\''));
-        array_pop($directories);
-
-        foreach ($directories as $websiteDirectory) {
-            $website = new Website($this->ssh, $websiteDirectory);
-            $websites->push($website);
-        }
-        $data = paginateCollection($websites,5);
-        return $data;
-    }
-
-
 }

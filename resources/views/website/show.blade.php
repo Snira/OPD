@@ -8,9 +8,9 @@
                    title="Klik om de website te openen">{{$website->directory}}</a>
                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                      title="Deze Website voldoet aan de regelgeving">
-                @if(!$website->isSubDomain())
+                @if($website instanceof \App\Website)
                 <p>{{$website->frameworkVersion()}}</p>
-                <p>*nieuwste versie is {{$latestVersions->drupal()}}</p>
+                <p>*nieuwste versie is {{$latestVersions->laravel()}}</p>
                 @else
                     <p>Dit is een subdomein.</p>
                 @endif
@@ -18,8 +18,8 @@
             </div>
         </div>
 
-        {{--Kolom voor plugins--}}
-        @if(!$website->isSubDomain())
+        @if($website instanceof \App\Website)
+            {{--Kolom voor plugins--}}
             <div class="col-6">
                 <div class="block">
                     <h2 class="h2">Plugins</h2>
@@ -39,7 +39,7 @@
                     <h2 class="h2">Domeinen</h2>
                     <ul id="plugins" class="">
                         @foreach($website->subDomains() as $domain)
-                            <li><p>{{$domain->directory}}</p></li>
+                            <li><a class="link blue" href="{{route('subdomain', [$server->nodeName(), $website->directory . '/' . $domain->directory])}}">{{$domain->directory}}</a></li>
                         @endforeach
 
                     </ul>

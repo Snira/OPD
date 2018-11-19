@@ -27,7 +27,7 @@
                 <h2 class="h2">Websites</h2>
                 <ul>
                     @foreach($server->websiteCollection() as $website)
-                        @if(!$website->isSubDomain())
+                        @if($website instanceof \App\Website)
                         <li>
                             <a class="h4 link"
                                href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
@@ -40,11 +40,11 @@
                 <h2 class="h2">Subdomeinen</h2>
                 <ul>
                     @foreach($server->websiteCollection() as $website)
-                        @if($website->isSubDomain())
+                        @if($website instanceof \App\Directory)
                         <li>
                             <a class="h4 link"
-                               href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
-                            <p>{{$website->frameworkVersion()}}</p>
+                               href="{{route('subdomain',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
+
                             @endif
                         </li>
                     @endforeach

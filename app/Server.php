@@ -3,6 +3,7 @@
 namespace App;
 
 use phpseclib\Net\SSH2;
+use App\Directory;
 
 class Server
 {
@@ -51,8 +52,12 @@ class Server
         array_pop($directories);
 
         foreach ($directories as $websiteDirectory) {
-            $website = new Website($this->ssh, $websiteDirectory);
-            $websites->push($website);
+            if($this->run('cd /var/www/vhosts/'. $websiteDirectory .'/bin;')){
+                $website = new Website($this->ssh, $websiteDirectory);
+                $websites->push($website);
+            }else{
+                $websites->push(new Directory($this->ssh, $websiteDirectory));
+            }
         }
         return $websites;
     }
@@ -81,7 +86,9 @@ class Server
      */
     public function CPUInfo()
     {
-        return explode("\n", $this->run('lscpu'));
+        $data = explode("\n", $this->run('lscpu'));
+        array_pop($data);
+        return $data;
     }
 
     /**

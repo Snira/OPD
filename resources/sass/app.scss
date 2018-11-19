@@ -37,6 +37,7 @@ header {
   transition: background-color 1s, box-shadow 1s;
 }
 nav{
+  font-family: Sathu;
   color: $White;
 }
 
@@ -124,4 +125,7 @@ p {
   background-color: $White;
   border-color: $White;
   color: $DarkBlue;
+}
+.blue{
+  color:$Blue !important;
 }
