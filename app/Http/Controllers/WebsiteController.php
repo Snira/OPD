@@ -35,7 +35,7 @@ class WebsiteController extends Controller
     public function subDomain($nodename, $domainName, $websiteName)
     {
         $server = server($nodename);
-        $directory = directory($server, $domainName);
+        $directory = website($server, $domainName);
         $website = $directory->website($websiteName);
 
 

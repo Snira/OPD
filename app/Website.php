@@ -10,6 +10,7 @@ class Website
 {
     private $ssh;
     public $directory;
+    public $framework;
 
     public function __construct(SSH2 $ssh, string $directory)
     {
@@ -30,7 +31,12 @@ class Website
     public function name()
     {
         $arr = explode("/", $this->directory, 2);
-        return $arr[1];
+        if (empty($arr[1])) {
+            return $this->directory;
+        } else {
+            return $arr[1];
+        }
+
     }
 
     /** Returns Framework version of website instance */

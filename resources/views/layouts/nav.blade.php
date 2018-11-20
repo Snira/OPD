@@ -19,7 +19,7 @@
                         <a class="link" href="{{route('server', [$server->nodeName()])}}">{{$server->nodeName()}} &nbsp;</a>
                     </li>
                 @endif
-                @if(isset($website)&& \Route::currentRouteName() == 'website' || \Route::currentRouteName() == 'subdomain')
+                @if(isset($website) && \Route::currentRouteName() == 'website' || \Route::currentRouteName() == 'subdomain')
                     <li class="nav-item">
                         >
                         <a class="link" href="{{route('server', [$server->nodeName(), $website->name()])}}">{{$website->name()}}</a>

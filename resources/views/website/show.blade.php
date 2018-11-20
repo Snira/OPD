@@ -38,7 +38,7 @@
 
                     </ul>
                 </div>
-                {{$website->plugins()->setPath($website->directory)->render()}}
+                {{$website->plugins()->setPath($website->name())->render()}}
             </div>
         @else
             {{--Kolom voor subdomeinen--}}
@@ -52,7 +52,7 @@
 
                     </ul>
                 </div>
-                {{$website->subDomains()->setPath($website->directory)->render()}}
+                {{$website->subDomains()->setPath($website->name())->render()}}
             </div>
         @endif
     </div>
