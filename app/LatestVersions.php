@@ -35,7 +35,7 @@ final class LatestVersions
 
         foreach ($versions as $version) {
             if (substr($version['version'], 0, 1) === "v") {
-                return $version['version'];
+                return substr($version['version'], 1);
             }
         }
     }

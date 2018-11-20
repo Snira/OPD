@@ -12,8 +12,6 @@ class Website
     public $directory;
     public $framework;
 
-    const FRAMEWORKS_ARRAY = ['Laravel', 'Drupal'];
-
     public function __construct(SSH2 $ssh, string $directory)
     {
         $this->ssh = $ssh;
@@ -44,18 +42,38 @@ class Website
     /** Returns Framework version of website instance */
     public function frameworkVersion()
     {
-        $commands = collect(["php artisan --version", "drush core-status version"]);
-        $i = -1;
-
-        foreach ($commands as $command) {
-            $data = $this->run($command);
-            $i++;
-            if (!$this->ssh->getExitStatus()) {
-                $this->framework = self::FRAMEWORKS_ARRAY[$i];
-                return $data;
-            }
+        $data = $this->laravel();
+        if (!$data){
+            $data = $this->drupal();
         }
-        return 'Geen bekend framework geinstalleerd';
+        return $data;
+    }
+
+
+    public function laravel()
+    {
+        $data = $this->run("php artisan --version");
+        if (!$this->ssh->getExitStatus()) {
+            $this->framework = 'Laravel';
+            return substr($data, -7);
+        }
+        return null;
+
+    }
+
+    public function drupal()
+    {
+        $data = (string)$this->run("drush version");
+        if (!$this->ssh->getExitStatus()) {
+            $this->framework = 'Drupal';
+            $parse = substr($data, -8);
+            $parse2 = substr($parse, 0,5);
+
+            return $parse2;
+        }
+        return null;
+
+
     }
 
     /**
