@@ -12,6 +12,8 @@ class Website
     public $directory;
     public $framework;
 
+    const FRAMEWORKS_ARRAY = ['Laravel', 'Drupal'];
+
     public function __construct(SSH2 $ssh, string $directory)
     {
         $this->ssh = $ssh;
@@ -43,10 +45,13 @@ class Website
     public function frameworkVersion()
     {
         $commands = collect(["php artisan --version", "drush core-status version"]);
+        $i = -1;
 
         foreach ($commands as $command) {
             $data = $this->run($command);
+            $i++;
             if (!$this->ssh->getExitStatus()) {
+                $this->framework = self::FRAMEWORKS_ARRAY[$i];
                 return $data;
             }
         }

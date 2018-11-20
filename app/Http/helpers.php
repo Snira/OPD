@@ -38,12 +38,12 @@ if (!function_exists('server')) {
 }
 
 /**
- * Returns instance of Website
+ * Returns instance of Website or Directory
  *
  * @param Server $server
  * @param string $directory
  *
- *
+ * @returns mixed
  */
 if (!function_exists('website')) {
     function website(Server $server, string $directory)

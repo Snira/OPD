@@ -16,13 +16,11 @@
             <div class="block">
 
                 @if($website instanceof \App\Website)
-                    <h2 class="h2">Algemene Info</h2>
-                <p>{{$website->frameworkVersion()}}</p>
-                <p>*nieuwste versie is {{$latestVersions->laravel()}}</p>
+                    @include('.layouts.versiontable')
                 @else
                     <p>Dit is een subdomein.</p>
                 @endif
-                <hr>
+
             </div>
         </div>
 
@@ -30,7 +28,8 @@
             {{--Kolom voor plugins--}}
             <div class="col-6">
                 <div class="block">
-                    <h2 class="h2">Plugins</h2>
+                    <h2 class="h3">Plugins</h2>
+                    <hr>
                     <ul id="plugins" class="">
                         @foreach($website->plugins() as $plugin)
                             <li><p>{{$plugin}}</p></li>
