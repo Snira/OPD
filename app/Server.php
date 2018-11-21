@@ -100,5 +100,11 @@ class Server
         $this->ssh->read('This server is powered by Plesk.');
     }
 
+//    public function kernelLastUpdated()
+//    {
+//        $data = $this->run('rpm -qa --last | grep kernel');
+//        dd($data);
+//    }
+
 
 }

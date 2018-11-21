@@ -10,7 +10,7 @@
 
 <table class="table">
     <thead>
-    <h2 class="h3">Belangrijke Onderdelen</h2>
+    <h3 class="h3">Versies</h3>
     <tr class="blue">
         <th scope="col">Status</th>
         <th scope="col">Type</th>
@@ -35,12 +35,12 @@
     </tr>
     <tr>
         <th scope="row">
-            @if($statusf < 1.0)
+            @if($statusp < 1.7)
                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                      title="Deze php versie voldoet">
             @else
                 <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
-                     title="Deze php versie is verouderd en makkelijk te exploiteren">
+                     title="Deze php versie is verouderd en te exploiteren">
             @endif
         </th>
         <td>PHP CLI</td>

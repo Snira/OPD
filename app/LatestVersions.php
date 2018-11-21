@@ -8,7 +8,13 @@ final class LatestVersions
 
     const LARAVEL_URL = 'https://packagist.org/packages/laravel/framework.json';
     const DRUPAL_URL = 'https://packagist.org/packages/drupal/drupal.json';
+    const PHP_URL = 'http://nl1.php.net/releases/?json&version=7';
 
+    /**
+     * Constructor set private so it can only me instantiated once
+     *
+     * LatestVersions constructor.
+     */
     private function __construct()
     {
 
@@ -26,6 +32,8 @@ final class LatestVersions
     }
 
     /**
+     * Returns latest Laravel version
+     *
      * @return mixed
      */
     public function laravel()
@@ -41,6 +49,8 @@ final class LatestVersions
     }
 
     /**
+     * Returns latest Drupal version
+     *
      * @return mixed
      */
     public function drupal()
@@ -55,10 +65,14 @@ final class LatestVersions
         }
     }
 
+    /**
+     * Returns latest php version
+     *
+     * @return bool|string
+     */
     public function php()
     {
-        $data =(array)json_decode(file_get_contents('http://nl1.php.net/releases/?json'));
-        $php7 = (array)$data[7];
-        return substr($php7["version"],0, 3);
+        $data = json_decode(file_get_contents(self::PHP_URL),true);
+        return substr($data["version"],0, 3);
     }
 }

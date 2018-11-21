@@ -27,6 +27,7 @@
         <div class="col-6">
             <div class="block">
                 @if($website instanceof \App\Website)
+                    @include('.layouts.checklist')
                     @include('.layouts.versiontable')
                 @else
                     <p>Dit is een subdomein.</p>
