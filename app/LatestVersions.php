@@ -54,4 +54,11 @@ final class LatestVersions
             }
         }
     }
+
+    public function php()
+    {
+        $data =(array)json_decode(file_get_contents('http://nl1.php.net/releases/?json'));
+        $php7 = (array)$data[7];
+        return substr($php7["version"],0, 3);
+    }
 }

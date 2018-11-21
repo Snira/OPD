@@ -43,7 +43,7 @@ class Website
     public function frameworkVersion()
     {
         $data = $this->laravel();
-        if (!$data){
+        if (!$data) {
             $data = $this->drupal();
         }
         return $data;
@@ -58,7 +58,6 @@ class Website
             return substr($data, -7);
         }
         return null;
-
     }
 
     public function drupal()
@@ -67,13 +66,11 @@ class Website
         if (!$this->ssh->getExitStatus()) {
             $this->framework = 'Drupal';
             $parse = substr($data, -8);
-            $parse2 = substr($parse, 0,5);
+            $parse2 = substr($parse, 0, 5);
 
             return $parse2;
         }
         return null;
-
-
     }
 
     /**
@@ -84,8 +81,20 @@ class Website
     public function plugins()
     {
         $data = explode("\n", $this->run("composer show"));
+        if (substr($data[0], 0, 7) == 'Warning') {
+            $data = ['Er is een fout bij het ophalen van plugins', 'De server geeft het volgende terug: ', $data[0]];
+        };
         $data2 = paginateCollection($data, 5);
         return $data2;
     }
+
+    public function phpVersion()
+    {
+        $data = $this->run('php -v');
+        return substr($data,3,4);
+    }
+
+
+
 
 }

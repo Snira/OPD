@@ -22,7 +22,7 @@
                                 <li>
                                     <a class="h4 link"
                                        href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
-                                    <p>{{$website->frameworkVersion()}}</p>
+                                    <p>{{$website->frameworkVersion()}} {{$website->framework}}</p>
                                 </li>
                             @endif
                         @endforeach
@@ -35,7 +35,6 @@
                                 <li>
                                     <a class="h4 link"
                                        href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
-
                                 </li>
                             @endif
                         @endforeach

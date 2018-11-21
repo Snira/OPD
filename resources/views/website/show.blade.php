@@ -1,3 +1,10 @@
+@php
+    $webstatus = 0;
+    $plugins = $website->plugins();
+    if (count($plugins) < 4){
+    $webstatus++;
+    }
+@endphp
 @extends('layouts.app')
 <body>
 <div class="container">
@@ -6,15 +13,19 @@
             <div class="head">
                 <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
                    title="Klik om de website te openen">{{$website->name()}}</a>
-                <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                     title="Deze Website voldoet aan de regelgeving">
+                @if($webstatus == 0)
+                    <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                         title="Deze Website voldoet aan de regelgeving">
+                @else
+                    <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                         title="Deze website heeft aandacht nodig">
+                @endif
             </div>
 
         </div>
 
         <div class="col-6">
             <div class="block">
-
                 @if($website instanceof \App\Website)
                     @include('.layouts.versiontable')
                 @else
@@ -31,13 +42,13 @@
                     <h2 class="h3">Plugins</h2>
                     <hr>
                     <ul id="plugins" class="">
-                        @foreach($website->plugins() as $plugin)
+                        @foreach($plugins as $plugin)
                             <li><p>{{$plugin}}</p></li>
                         @endforeach
 
                     </ul>
                 </div>
-                {{$website->plugins()->setPath($website->name())->render()}}
+                {{$plugins->setPath($website->name())->render()}}
             </div>
         @else
             {{--Kolom voor subdomeinen--}}
@@ -46,7 +57,9 @@
                     <h2 class="h2">Domeinen</h2>
                     <ul id="plugins" class="">
                         @foreach($website->subDomains() as $domain)
-                            <li><a class="link blue" href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a></li>
+                            <li><a class="link blue"
+                                   href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a>
+                            </li>
                         @endforeach
 
                     </ul>

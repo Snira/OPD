@@ -41,12 +41,6 @@ class Server
      */
     public function websiteCollection()
     {
-//        $command = 'cd /var/www/vhosts; ls | grep \'.nl\'';
-//        return collect(explode("\n", $this->run($command)))->map(function($directory) {
-//            return new Website($this->ssh, $directory);
-//        })->pop();
-
-
         $websites = collect();
         $directories = explode("\n", $this->run('cd /var/www/vhosts; ls | grep \'.nl\''));
         array_pop($directories);
@@ -99,6 +93,11 @@ class Server
     {
         $data = $this->run('cat /etc/*release');
         return substr($data, 0, strpos($data, "\n"));
+    }
+
+    public function plesk()
+    {
+        $this->ssh->read('This server is powered by Plesk.');
     }
 
 

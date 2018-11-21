@@ -1,13 +1,16 @@
 @php
-    $version = (float)$website->frameworkVersion();
-    $latest = (float)$latestVersions->{$website->framework}();
-    $status = $latest - $version;
+    $versionf = (float)$website->frameworkVersion();
+    $latestf = (float)$latestVersions->{$website->framework}();
+    $statusf = $latestf - $versionf;
 
+    $versionp = (float) $website->phpVersion();
+    $latestp = (float) $latestVersions->php();
+    $statusp = $latestp - $versionp;
 @endphp
 
 <table class="table">
     <thead>
-    <h2 class="h3">Belangrijkste Onderdelen</h2>
+    <h2 class="h3">Belangrijke Onderdelen</h2>
     <tr class="blue">
         <th scope="col">Status</th>
         <th scope="col">Type</th>
@@ -18,7 +21,7 @@
     <tbody>
     <tr>
         <th scope="row">
-            @if($status < 1.0)
+            @if($statusf < 1.0)
                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                      title="Dit framework voldoet aan de eisen">
             @else
@@ -27,8 +30,22 @@
             @endif
         </th>
         <td>Framework</td>
-        <td>{{$website->framework}} {{$version}}</td>
-        <td>{{$website->framework}} {{$latest}}</td>
+        <td>{{$website->framework}} {{$versionf}}</td>
+        <td>{{$website->framework}} {{$latestf}}</td>
+    </tr>
+    <tr>
+        <th scope="row">
+            @if($statusf < 1.0)
+                <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                     title="Deze php versie voldoet">
+            @else
+                <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                     title="Deze php versie is verouderd en makkelijk te exploiteren">
+            @endif
+        </th>
+        <td>PHP CLI</td>
+        <td>{{$versionp}}</td>
+        <td>{{$latestp}}</td>
     </tr>
     <tr>
         <th scope="row">Status</th>
