@@ -140,5 +140,11 @@ class Website
         }
     }
 
+    public function httpfoundation()
+    {
+        $data = $this->run('composer show symfony/http-foundation');
+        dd($data);
+    }
+
 
 }

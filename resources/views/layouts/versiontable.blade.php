@@ -48,6 +48,15 @@
         <td>{{$latestp}}</td>
     </tr>
     <tr>
+        <th scope="row">
+            <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                 title="Voldoet">
+        </th>{{$website->httpfoundation()}}
+        <td>HttpFoundation</td>
+        <td></td>
+        <td>{{$latestVersions->httpfoundation()}}</td>
+    </tr>
+    <tr>
         <th scope="row">Status</th>
         <td>Onderdeel</td>
         <td>Versie</td>

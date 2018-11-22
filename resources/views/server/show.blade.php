@@ -18,6 +18,7 @@
                 <h2 class="h2">CPU Info</h2>
                 <ul>
                     @foreach($server->CPUInfo() as $info)
+                        <p>{{$latestVersions->CentOS()}}</p>
                         <li>{{$info}}</li>
                     @endforeach
                 </ul>
