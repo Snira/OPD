@@ -114,11 +114,15 @@ class Website
     /**
      * Checks if website is online and reachable
      *
+     * @return bool
      */
     public function online()
     {
-//        $data = $this->run('ping '.$this->name() );
-//        dd($data);
+        $this->run('ping -c 3 '.$this->name());
+        if (!$this->ssh->getExitStatus()){
+            return true;
+        }
+        return false;
     }
 
     /**

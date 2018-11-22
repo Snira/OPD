@@ -1,9 +1,12 @@
 @php
+    if ($website instanceof \App\Website){
     $webstatus = 0;
-    $plugins = $website->plugins();
-    if (count($plugins) < 4){
-    $webstatus++;
+        $plugins = $website->plugins();
+        if (count($plugins) < 4){
+        $webstatus++;
+        }
     }
+
 @endphp
 @extends('layouts.app')
 <body>
@@ -13,10 +16,10 @@
             <div class="head">
                 <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
                    title="Klik om de website te openen">{{$website->name()}}</a>
-                @if($webstatus == 0)
+                @if(isset($webstatus) && $webstatus == 0)
                     <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                          title="Deze Website voldoet aan de regelgeving">
-                @else
+                @elseif(isset($webstatus) && $webstatus != 0)
                     <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
                          title="Deze website heeft aandacht nodig">
                 @endif
