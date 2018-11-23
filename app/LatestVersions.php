@@ -10,7 +10,8 @@ final class LatestVersions
     const DRUPAL_URL = 'https://packagist.org/packages/drupal/drupal.json';
     const PHP_URL = 'http://nl1.php.net/releases/?json&version=7';
     const CENTOS_URL = 'http://opensource.wandisco.com/centos/';
-    const HTTPFOUNDDATION_URL = 'https://packagist.org/packages/symfony/http-foundation.json';
+    const SYMFONYHTTP_URL = 'https://packagist.org/packages/symfony/http-foundation.json';
+    const SYMFONYPOLYFILL_URL = 'https://packagist.org/packages/symfony/polyfill-php56.json';
 
     /**
      * Constructor set private so it can only be instantiated once from instance()
@@ -85,12 +86,12 @@ final class LatestVersions
     }
 
     /**
-     * Returns latest httpfoundation version (non beta)
+     * Returns latest http foundation/kernel version (non beta)
      *
      * @return bool|string
      */
-    public function httpfoundation(){
-        $data = json_decode(file_get_contents(self::HTTPFOUNDDATION_URL),true);
+    public function symfonyhttp(){
+        $data = json_decode(file_get_contents(self::SYMFONYHTTP_URL),true);
         $versions = $data['package']['versions'];
 
         foreach($versions as $version){
@@ -99,4 +100,17 @@ final class LatestVersions
             }
         }
     }
+
+    public function polyfill()
+    {
+        $data = json_decode(file_get_contents(self::SYMFONYPOLYFILL_URL),true);
+        $versions = $data['package']['versions'];
+
+        foreach($versions as $version){
+            if(strlen($version['version']) == 6){
+                return substr($version['version'], 1);
+            }
+        }
+    }
+
 }

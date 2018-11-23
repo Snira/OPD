@@ -6,11 +6,20 @@
     $versionp = (float) $website->phpVersion();
     $latestp = (float) $latestVersions->php();
     $statusp = $latestp - $versionp;
+
+    $versionhttpf = (float) $website->symfonyhttp();
+    $latesthttpf = (float) $latestVersions->symfonyhttp();
+    $statushttpf = $latesthttpf - $versionhttpf;
+
+    $versionpoly = (float) $website->polyfill();
+    $latestpoly = (float) $latestVersions->polyfill();
+    $statuspoly = $latestpoly - $versionpoly;
+
 @endphp
 
 <table class="table">
     <thead>
-    <h3 class="h3">Versies</h3>
+    <h3 class="h3">Belangrijkste Versies</h3>
     <tr class="blue">
         <th scope="col">Status</th>
         <th scope="col">Type</th>
@@ -49,18 +58,31 @@
     </tr>
     <tr>
         <th scope="row">
-            <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                 title="Voldoet">
-        </th>{{$website->httpfoundation()}}
-        <td>HttpFoundation</td>
-        <td></td>
-        <td>{{$latestVersions->httpfoundation()}}</td>
+            @if($statushttpf < 0.5)
+                <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                     title="Dit onderdeel voldoet">
+            @else
+                <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                     title="Dit onderdeel heeft een update nodig">
+            @endif
+        </th>
+        <td>Symfony/Http</td>
+        <td>{{$versionhttpf}}</td>
+        <td>{{$latesthttpf}}</td>
     </tr>
     <tr>
-        <th scope="row">Status</th>
-        <td>Onderdeel</td>
-        <td>Versie</td>
-        <td>Laatste versie</td>
+        <th scope="row">
+            @if($statuspoly < 0.5)
+                <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                     title="Dit onderdeel voldoet">
+            @else
+                <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                     title="Dit onderdeel heeft een update nodig">
+            @endif
+        </th>
+        <td>Symfony/Polyfill</td>
+        <td>{{$versionpoly}}</td>
+        <td>{{$latestpoly}}</td>
     </tr>
     </tbody>
 </table>

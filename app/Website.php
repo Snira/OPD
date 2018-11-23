@@ -140,10 +140,16 @@ class Website
         }
     }
 
-    public function httpfoundation()
+    public function symfonyhttp()
     {
-        $data = $this->run('composer show symfony/http-foundation');
-        dd($data);
+        $data = explode("\n", $this->run('composer show symfony/http-foundation'));
+        return substr($data[3], 14,6);
+    }
+
+    public function polyfill()
+    {
+        $data = explode("\n", $this->run('composer show symfony/polyfill-php56'));
+        return substr($data[3], 14,6);
     }
 
 
