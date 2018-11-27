@@ -82,7 +82,7 @@ final class LatestVersions
     public function CentOS()
     {
         $data = explode("\n" ,file_get_contents(self::CENTOS_URL));
-        dd($data);
+
     }
 
     /**

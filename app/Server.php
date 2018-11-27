@@ -95,9 +95,18 @@ class Server
         return substr($data, 0, strpos($data, "\n"));
     }
 
+    /**
+     * Returns if plesk is used on server
+     * @return bool
+     */
     public function plesk()
     {
-        $this->ssh->read('This server is powered by Plesk.');
+        $query = 'This server is powered by Plesk.';
+        $data = explode("\r\r\n\r\n", $this->ssh->read($query));
+        if($query == isset($data[1])){
+            return true;
+        }
+        return false;
     }
 
 //    public function kernelLastUpdated()
