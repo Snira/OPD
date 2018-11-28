@@ -76,6 +76,21 @@ class Server
     }
 
     /**
+     * Checks if kernel has been updated this year (should be ok for now)
+     *
+     * @return bool
+     */
+    public function kernelUpToDate()
+    {
+        $data = $this->run('uname -v');
+        $val = (integer)substr($data, 31, 4);
+        if ($val < date("Y")) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Returns Info of ServerCPU
      * @return array
      */
@@ -100,7 +115,7 @@ class Server
      * Returns if plesk is used on server
      * @return bool
      */
-    public function plesk()
+    public function hasPlesk()
     {
         $query = 'This server is powered by Plesk.';
         $data = explode("\r\r\n\r\n", $this->ssh->read($query));
@@ -110,16 +125,13 @@ class Server
         return false;
     }
 
-
-    public function kernelUpToDate()
+    public function pleskVersion()
     {
-        $data = $this->run('uname -v');
-        $val = (integer)substr($data, 31, 4);
-        if ($val < 2018) {
-            return false;
-        }
-        return true;
+        $data = $this->run('rpm -q psa');
+        return $data;
     }
+
+
 
 
 }

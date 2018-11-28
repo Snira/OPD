@@ -41,17 +41,17 @@
                         </th>
                         <td>Kernels</td>
                         <td>
-                           {{$server->kernelVersion()}}
+                            {{$server->kernelVersion()}}
                         </td>
                     </tr>
-                    @if($server->plesk())
+                    @if($server->hasPlesk())
                         <tr>
                             <th scope="row">
                                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                                     title="Deze server gebruikt Plesk">
+                                     title="Deze server gebruikt een recente versie van Plesk">
                             </th>
                             <td>Plesk</td>
-                            <td>
+                            <td>{{$server->pleskVersion()}}
                             </td>
                         </tr>
                     @endif
@@ -88,7 +88,6 @@
                             <li>
                                 <a class="h4 link"
                                    href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
-
                                 @endif
                             </li>
                             @endforeach
