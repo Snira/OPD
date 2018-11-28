@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use phpseclib\Net\SSH2;
 use App\Directory;
 
@@ -46,10 +47,10 @@ class Server
         array_pop($directories);
 
         foreach ($directories as $websiteDirectory) {
-            if($this->run('cd /var/www/vhosts/'. $websiteDirectory .'/bin;')){
+            if ($this->run('cd /var/www/vhosts/' . $websiteDirectory . '/bin;')) {
                 $website = new Website($this->ssh, $websiteDirectory);
                 $websites->push($website);
-            }else{
+            } else {
                 $websites->push(new Directory($this->ssh, $websiteDirectory));
             }
         }
@@ -103,17 +104,22 @@ class Server
     {
         $query = 'This server is powered by Plesk.';
         $data = explode("\r\r\n\r\n", $this->ssh->read($query));
-        if($query == isset($data[1])){
+        if ($query == isset($data[1])) {
             return true;
         }
         return false;
     }
 
-//    public function kernelLastUpdated()
-//    {
-//        $data = $this->run('rpm -qa --last | grep kernel');
-//        dd($data);
-//    }
+
+    public function kernelUpToDate()
+    {
+        $data = $this->run('uname -v');
+        $val = (integer)substr($data, 31, 4);
+        if ($val < 2018) {
+            return false;
+        }
+        return true;
+    }
 
 
 }

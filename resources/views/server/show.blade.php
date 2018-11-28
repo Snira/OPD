@@ -31,18 +31,17 @@
 
                     <tr>
                         <th scope="row">
-                            @if(1)
+                            @if($server->kernelUpToDate())
                                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                                     title="Deze kernel voldoet aan de eisen">
+                                     title="Deze kernel voldoet">
                             @else
                                 <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
-                                     title="Deze kernel is mogelijk verouderd">
+                                     title="Deze kernel heeft een update nodig">
                             @endif
                         </th>
-                        <td>Kernel</td>
-                        <td>{{$server->kernelVersion()}}  <i class="fa fa-exclamation-circle"
-                                                                   data-toggle="tooltip"
-                                                                   title="Het updaten van een kernel is belangrijk voor de beveiliging van de server"></i>
+                        <td>Kernels</td>
+                        <td>
+                           {{$server->kernelVersion()}}
                         </td>
                     </tr>
                     @if($server->plesk())
