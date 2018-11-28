@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Server;
-use Illuminate\Http\Request;
-use phpseclib\Net\SSH2;
-use App\Dataset;
-
+use App\LatestVersions;
 
 class HomeController extends Controller
 {
@@ -19,10 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->servers = collect();
-        foreach (config()->get('connections') as $credentials) {
-            $this->servers->push(new Server($credentials));
-        }
+        $this->servers = servers();
     }
 
     /**
@@ -35,11 +28,18 @@ class HomeController extends Controller
         return view('home')->with(['servers' => $this->servers]);
     }
 
-    public function show($nodename)
+    /**
+     * Show the Server dashboard.
+     *
+     * @param $nodeName
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show($nodeName)
     {
+        $server = server($nodeName);
 
-        $server = $this->servers->where('nodename', $nodename)->first();
+        $latestVersions = LatestVersions::instance();
 
-        return view('server.show',['server' => $server]);
+        return view('server.show', ['server' => $server, 'latestVersions' => $latestVersions]);
     }
 }

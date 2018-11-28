@@ -2,27 +2,17 @@
 
 namespace App;
 
-use Illuminate\Support\Fluent;
+use Carbon\Carbon;
 use phpseclib\Net\SSH2;
+use App\Directory;
 
 class Server
 {
     private $ssh;
-    public $websites;
-    public $nodename;
-    public $kernelversion;
-    public $CPUInfo;
-    public $OSVersion;
 
-    public function __construct($credentials)
+    public function __construct(array $credentials)
     {
-        $this->websites = collect();
         $this->login($credentials);
-        $this->setWebsiteCollection();
-        $this->setNodeName();
-        $this->setKernelVersion();
-        $this->setCPUInfo();
-        $this->setOSVersion();
     }
 
     /**
@@ -36,57 +26,112 @@ class Server
         }
     }
 
-    public function setNodeName()
+    /**
+     * Returns output of an SSH command
+     * @param string $command
+     * @return mixed
+     */
+    private function run(string $command)
     {
-        $this->nodename = $this->ssh->exec('uname -n');
-
-    }
-
-    public function setKernelVersion()
-    {
-        $this->kernelversion = $this->ssh->exec('uname -v');
-    }
-
-    public function setCPUInfo()
-    {
-        $this->CPUInfo = explode("\n", $this->ssh->exec('lscpu'));
-    }
-
-    public function setOSVersion()
-    {
-        $data = $this->ssh->exec('cat /etc/*release');
-        $this->OSVersion = substr($data, 0, strpos($data, "\n"));
+        return $this->ssh->exec($command);
     }
 
     /**
-     * Sets an array with all the website domain names
+     * Returns an array with all the website domain names
+     * @return \Illuminate\Support\Collection
      */
-    public function setWebsiteCollection(): void
+    public function websiteCollection()
     {
-        $directories = explode("\n", $this->ssh->exec('cd /var/www/vhosts; ls | grep \'.nl\''));
+        $websites = collect();
+        $directories = explode("\n", $this->run('cd /var/www/vhosts; ls | grep \'.nl\''));
         array_pop($directories);
 
         foreach ($directories as $websiteDirectory) {
-            $website = new Website($this->ssh, $websiteDirectory);
-            $this->websites->push($website->getWebsiteInstance());
+            if ($this->run('cd /var/www/vhosts/' . $websiteDirectory . '/bin;')) {
+                $website = new Website($this->ssh, $websiteDirectory);
+                $websites->push($website);
+            } else {
+                $websites->push(new Directory($this->ssh, $websiteDirectory));
+            }
         }
+        return $websites;
     }
 
-    public function getServerInstance()
+    /**
+     * Returns NodeName
+     * @return string
+     */
+    public function nodeName()
     {
-        $serverObject = new Fluent([
-            'nodename' => $this->nodename,
-            'kernelversion' => $this->kernelversion
-        ]);
-
-        return $serverObject;
+        return $this->run('uname -n');
     }
 
-
-    public function getWebsiteCollection()
+    /**
+     * Returns KernelVersion
+     * @return string
+     */
+    public function kernelVersion()
     {
-        return $this->websites;
+        return $this->run('uname -v');
     }
+
+    /**
+     * Checks if kernel has been updated this year (should be ok for now)
+     *
+     * @return bool
+     */
+    public function kernelUpToDate()
+    {
+        $data = $this->run('uname -v');
+        $val = (integer)substr($data, 31, 4);
+        if ($val < date("Y")) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns Info of ServerCPU
+     * @return array
+     */
+    public function CPUInfo()
+    {
+        $data = explode("\n", $this->run('lscpu'));
+        array_pop($data);
+        return $data;
+    }
+
+    /**
+     * Returns Operating System Version
+     * @return bool|string
+     */
+    public function OSVersion()
+    {
+        $data = $this->run('cat /etc/*release');
+        return substr($data, 0, strpos($data, "\n"));
+    }
+
+    /**
+     * Returns if plesk is used on server
+     * @return bool
+     */
+    public function hasPlesk()
+    {
+        $query = 'This server is powered by Plesk.';
+        $data = explode("\r\r\n\r\n", $this->ssh->read($query));
+        if ($query == isset($data[1])) {
+            return true;
+        }
+        return false;
+    }
+
+    public function pleskVersion()
+    {
+        $data = $this->run('rpm -q psa');
+        return substr($data, 4, 7);
+    }
+
+
 
 
 }
