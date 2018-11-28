@@ -128,7 +128,7 @@ class Server
     public function pleskVersion()
     {
         $data = $this->run('rpm -q psa');
-        return $data;
+        return substr($data, 4, 7);
     }
 
 
