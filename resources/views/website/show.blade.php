@@ -6,7 +6,6 @@
         $webstatus++;
         }
     }
-
 @endphp
 @extends('layouts.app')
 <body>
@@ -14,8 +13,12 @@
     <div class="row">
         <div class="col-12">
             <div class="head">
+                @if($website instanceof \App\Website)
                 <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
                    title="Klik om de website te openen">{{$website->name()}}</a>
+                @else
+                    <h1 class="h1">{{$website->name()}}</h1>
+                @endif
                 @if(isset($webstatus) && $webstatus == 0)
                     <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                          title="Deze Website voldoet aan de regelgeving">
@@ -33,7 +36,7 @@
                     @include('.layouts.checklist')
                     @include('.layouts.versiontable')
                 @else
-                    <p>Dit is een subdomein.</p>
+                    @include('layouts.subdomains')
                 @endif
 
             </div>
@@ -43,7 +46,13 @@
             {{--Kolom voor plugins--}}
             <div class="col-6">
                 <div class="block">
-                    <h2 class="h3">Plugins</h2>
+                    <h2 class="h3">Plugins
+                        @if(count($plugins) < 4)
+                            <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                                 title="Er zijn problemen met het laden van de plugins">
+                        @endif
+                    </h2>
+
                     <hr>
                     <ul id="plugins" class="">
                         @foreach($plugins as $plugin)
@@ -54,22 +63,8 @@
                 </div>
                 {{$plugins->setPath($website->name())->render()}}
             </div>
-        @else
-            {{--Kolom voor subdomeinen--}}
-            <div class="col-6">
-                <div class="block">
-                    <h2 class="h2">Domeinen</h2>
-                    <ul id="plugins" class="">
-                        @foreach($website->subDomains() as $domain)
-                            <li><a class="link blue"
-                                   href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a>
-                            </li>
-                        @endforeach
 
-                    </ul>
-                </div>
-                {{$website->subDomains()->setPath($website->name())->render()}}
-            </div>
+
         @endif
     </div>
 

@@ -29,6 +29,11 @@ class Website
         return $this->ssh->exec("cd /var/www/vhosts/'$this->directory';" . $command);
     }
 
+    public function status()
+    {
+
+    }
+
     public function name()
     {
         $arr = explode("/", $this->directory, 2);
@@ -96,7 +101,7 @@ class Website
         if (substr($data[0], 0, 7) == 'Warning') {
             $data = ['Er is een fout bij het ophalen van plugins', 'De server geeft het volgende terug: ', $data[0]];
         };
-        $data2 = paginateCollection($data, 5);
+        $data2 = paginateCollection($data, 8);
         return $data2;
     }
 

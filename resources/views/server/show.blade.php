@@ -1,3 +1,8 @@
+@php
+    /** @var $website \App\Website
+    ** @var $server \App\Server
+    */
+@endphp
 @extends('layouts.app')
 <body>
 <div class="container">
@@ -44,14 +49,14 @@
                             {{$server->kernelVersion()}}
                         </td>
                     </tr>
-                    @if($server->hasPlesk())
+                    @if($server->plesk())
                         <tr>
                             <th scope="row">
                                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                                      title="Deze server gebruikt een recente versie van Plesk">
                             </th>
                             <td>Plesk</td>
-                            <td>{{$server->pleskVersion()}}
+                            <td>{{$server->plesk()}}
                             </td>
                         </tr>
                     @endif

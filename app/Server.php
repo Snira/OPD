@@ -112,22 +112,16 @@ class Server
     }
 
     /**
-     * Returns if plesk is used on server
-     * @return bool
+     * Checks plesk version, returns version. If
+     *
+     * @return bool|string
      */
-    public function hasPlesk()
-    {
-        $query = 'This server is powered by Plesk.';
-        $data = explode("\r\r\n\r\n", $this->ssh->read($query));
-        if ($query == isset($data[1])) {
-            return true;
-        }
-        return false;
-    }
-
-    public function pleskVersion()
+    public function plesk()
     {
         $data = $this->run('rpm -q psa');
+        if ($this->ssh->getExitStatus()){
+            return false;
+        }
         return substr($data, 4, 7);
     }
 

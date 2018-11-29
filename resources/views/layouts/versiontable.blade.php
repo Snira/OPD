@@ -56,6 +56,7 @@
         <td>{{$versionp}}</td>
         <td>{{$latestp}}</td>
     </tr>
+    @if($versionhttpf != 0)
     <tr>
         <th scope="row">
             @if($statushttpf < 0.5)
@@ -70,6 +71,8 @@
         <td>{{$versionhttpf}}</td>
         <td>{{$latesthttpf}}</td>
     </tr>
+    @endif
+    @if($versionpoly != 0)
     <tr>
         <th scope="row">
             @if($statuspoly < 0.5)
@@ -84,5 +87,6 @@
         <td>{{$versionpoly}}</td>
         <td>{{$latestpoly}}</td>
     </tr>
+        @endif
     </tbody>
 </table>

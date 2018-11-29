@@ -79,6 +79,8 @@ final class LatestVersions
         return substr($data["version"],0, 3);
     }
 
+
+
     public function CentOS()
     {
         $data = explode("\n" ,file_get_contents(self::CENTOS_URL));
@@ -101,6 +103,11 @@ final class LatestVersions
         }
     }
 
+    /**
+     * Returns latest symfony/polyfill version
+     *
+     * @return bool|string
+     */
     public function polyfill()
     {
         $data = json_decode(file_get_contents(self::SYMFONYPOLYFILL_URL),true);
