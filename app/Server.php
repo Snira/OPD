@@ -8,6 +8,9 @@ use App\Directory;
 
 class Server
 {
+    /**
+     * @var $ssh SSH2
+     */
     private $ssh;
 
     public function __construct(array $credentials)

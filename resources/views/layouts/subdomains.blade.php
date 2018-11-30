@@ -1,6 +1,5 @@
 {{--Kolom voor subdomeinen--}}
-<div class="col-6">
-
+    <div class="block">
     <table class="table">
         <thead>
         <h3 class="h3">Alle websites</h3>
@@ -18,13 +17,8 @@
                        href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a>
                 </td>
             </tr>
-
         @endforeach
-
         </tbody>
     </table>
-
-
-
-</div>
+    </div>
 {{$website->subDomains()->setPath($website->name())->render()}}

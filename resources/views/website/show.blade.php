@@ -14,8 +14,8 @@
         <div class="col-12">
             <div class="head">
                 @if($website instanceof \App\Website)
-                <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
-                   title="Klik om de website te openen">{{$website->name()}}</a>
+                    <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
+                       title="Klik om de website te openen">{{$website->name()}}</a>
                 @else
                     <h1 class="h1">{{$website->name()}}</h1>
                 @endif
@@ -31,15 +31,12 @@
         </div>
 
         <div class="col-6">
-            <div class="block">
-                @if($website instanceof \App\Website)
-                    @include('.layouts.checklist')
-                    @include('.layouts.versiontable')
-                @else
-                    @include('layouts.subdomains')
-                @endif
-
-            </div>
+            @if($website instanceof \App\Website)
+                @include('.layouts.checklist')
+                @include('.layouts.versiontable')
+            @else
+                @include('layouts.subdomains')
+            @endif
         </div>
 
         @if($website instanceof \App\Website)

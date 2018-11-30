@@ -16,7 +16,7 @@
     $statuspoly = $latestpoly - $versionpoly;
 
 @endphp
-
+<div class="block">
 <table class="table">
     <thead>
     <h3 class="h3">Belangrijkste Versies</h3>
@@ -90,3 +90,4 @@
         @endif
     </tbody>
 </table>
+</div>

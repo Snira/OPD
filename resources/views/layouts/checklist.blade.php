@@ -1,3 +1,4 @@
+<div class="block">
 <table class="table">
     <thead>
     <h3 class="h3">Checklist</h3>
@@ -33,3 +34,4 @@
     </tr>
     </tbody>
 </table>
+</div>
