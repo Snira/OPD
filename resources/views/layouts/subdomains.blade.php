@@ -10,6 +10,7 @@
         </thead>
         <tbody>
         @foreach($website->subDomains() as $domain)
+            {{dd($domain->status($server->nodeName(),$website->directory))}}
             <tr>
                 <td><img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                          title="Deze website heeft aandacht nodig"></td>

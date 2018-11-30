@@ -29,11 +29,25 @@ class Website
         return $this->ssh->exec("cd /var/www/vhosts/'$this->directory';" . $command);
     }
 
-    public function status()
+    /**
+     * Returns status of website
+     *
+     * @param $serverDir
+     * @param $websiteDir
+     *
+     */
+    public function status($serverDir, $websiteDir)
     {
-
+        $ssl = $this->https();
+        $php = $this->ssh->exec("cd /var/www/vhosts/'$serverDir'/'$websiteDir'");
+        dd($php);
     }
 
+    /**
+     * Returns name of website
+     *
+     * @return string
+     */
     public function name()
     {
         $arr = explode("/", $this->directory, 2);
@@ -123,8 +137,8 @@ class Website
      */
     public function online()
     {
-        $this->run('ping -c 3 '.$this->name());
-        if (!$this->ssh->getExitStatus()){
+        $this->run('ping -c 3 ' . $this->name());
+        if (!$this->ssh->getExitStatus()) {
             return true;
         }
         return false;
@@ -148,13 +162,13 @@ class Website
     public function symfonyhttp()
     {
         $data = explode("\n", $this->run('composer show symfony/http-foundation'));
-        return substr($data[3], 14,6);
+        return substr($data[3], 14, 6);
     }
 
     public function polyfill()
     {
         $data = explode("\n", $this->run('composer show symfony/polyfill-php56'));
-        return substr($data[3], 14,6);
+        return substr($data[3], 14, 6);
     }
 
 
