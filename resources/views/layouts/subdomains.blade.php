@@ -1,5 +1,5 @@
 {{--Kolom voor subdomeinen--}}
-    <div class="block">
+<div class="block">
     <table class="table">
         <thead>
         <h3 class="h3">Alle websites</h3>
@@ -10,10 +10,19 @@
         </thead>
         <tbody>
         @foreach($website->subDomains() as $domain)
-            {{dd($domain->status($server->nodeName(),$website->directory))}}
             <tr>
-                <td><img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                         title="Deze website heeft aandacht nodig"></td>
+                <td>
+                    @if($domain->status($website->directory,$domain->directory) == 0)
+                        <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze website lijkt oké!">
+                    @elseif($domain->status($website->directory,$domain->directory) == 1)
+                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze website heeft aandacht nodig">
+                    @else
+                        <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze website loopt risico's!">
+                    @endif
+                </td>
                 <td><a class="link blue"
                        href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a>
                 </td>
@@ -21,5 +30,5 @@
         @endforeach
         </tbody>
     </table>
-    </div>
+</div>
 {{$website->subDomains()->setPath($website->name())->render()}}

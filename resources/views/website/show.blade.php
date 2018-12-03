@@ -19,12 +19,17 @@
                 @else
                     <h1 class="h1">{{$website->name()}}</h1>
                 @endif
-                @if(isset($webstatus) && $webstatus == 0)
-                    <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                         title="Deze Website voldoet aan de regelgeving">
-                @elseif(isset($webstatus) && $webstatus != 0)
-                    <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
-                         title="Deze website heeft aandacht nodig">
+                @if($website instanceof \App\Website)
+                    @if(isset($webstatus) && $webstatus == 0)
+                        <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze Website voldoet aan de regelgeving">
+                    @elseif(isset($webstatus) && $webstatus =! 0 && $webstatus < 2)
+                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze website heeft aandacht nodig">
+                    @else
+                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze website loopt risico!">
+                    @endif
                 @endif
             </div>
 
