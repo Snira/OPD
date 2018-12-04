@@ -64,7 +64,7 @@
                      title="Dit onderdeel voldoet">
             @else
                 <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                     title="Dit onderdeel heeft een update nodig">
+                     title="Dit onderdeel mag wel een update gebruiken, maar geeft op dit moment geen beveilingsrisico's">
             @endif
         </th>
         <td>Symfony/Http</td>
@@ -80,7 +80,7 @@
                      title="Dit onderdeel voldoet">
             @else
                 <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                     title="Dit onderdeel heeft een update nodig">
+                     title="Dit onderdeel mag wel een update gebruiken, maar geeft op dit moment geen beveilingsrisico's">
             @endif
         </th>
         <td>Symfony/Polyfill</td>

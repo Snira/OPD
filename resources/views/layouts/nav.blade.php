@@ -4,11 +4,7 @@
     </nav>
     <nav class="navbar navbar-expand-lg navbar-light">
         <i class="fa fa-folder-open"></i>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="link" href="{{route('home')}}">&nbsp; Home &nbsp;</a>
@@ -22,7 +18,14 @@
                 @if(isset($website) && \Route::currentRouteName() == 'website' || \Route::currentRouteName() == 'subdomain')
                     <li class="nav-item">
                         >
-                        <a class="link" href="{{route('server', [$server->nodeName(), $website->name()])}}">{{$website->name()}}</a>
+                        <a class="link"
+                           href="{{route('server', [$server->nodeName(), $website->name()])}}">{{$website->name()}}</a>
+                    </li>
+                @endif
+                @if(Route::currentRouteName() == 'avg')
+                    <li class="nav-item">
+                        > &nbsp;
+                        <a class="link" href="{{route('avg')}}">Bewustwording AVG</a>
                     </li>
                 @endif
                 {{--<li class="nav-item">--}}

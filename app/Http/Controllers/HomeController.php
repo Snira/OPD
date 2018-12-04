@@ -42,4 +42,9 @@ class HomeController extends Controller
 
         return view('server.show', ['server' => $server, 'latestVersions' => $latestVersions]);
     }
+
+    public function avg()
+    {
+        return view('avg');
+    }
 }
