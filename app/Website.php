@@ -43,10 +43,16 @@ class Website
 
         $php = substr($this->ssh->exec("cd /var/www/vhosts/'$domainDir'/'$websiteDir'; php -v"), 4, 5);
 
-        if (!$this->https()){
+        if (!$this->https() & $this->online()){
             $this->status ++;
         }
         if ((float)$php < 5.6){
+            $this->status ++;
+        }
+
+        $v = (float)$this->frameworkVersion();
+
+        if ($v - 5 > 1){
             $this->status ++;
         }
 

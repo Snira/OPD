@@ -63,7 +63,7 @@
                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                      title="Dit onderdeel voldoet">
             @else
-                <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                      title="Dit onderdeel heeft een update nodig">
             @endif
         </th>
@@ -79,7 +79,7 @@
                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                      title="Dit onderdeel voldoet">
             @else
-                <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                      title="Dit onderdeel heeft een update nodig">
             @endif
         </th>

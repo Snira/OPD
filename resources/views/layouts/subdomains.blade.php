@@ -15,7 +15,7 @@
                     @if($domain->status($website->directory,$domain->directory) == 0)
                         <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                              title="Deze website lijkt oké!">
-                    @elseif($domain->status($website->directory,$domain->directory) == 1)
+                    @elseif($domain->status($website->directory,$domain->directory) <= 2)
                         <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                              title="Deze website heeft aandacht nodig">
                     @else
