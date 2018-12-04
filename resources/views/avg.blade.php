@@ -34,7 +34,7 @@
 
         <div class="col-3">
             <div class="block" style="height: 150px;">
-
+            content block
             </div>
 
         </div>
@@ -44,6 +44,22 @@
                 <p>Ook je PHP versie kan outdated raken. Door gebruik te maken van een oude php versie, geef je kwaadwillende in sommige gevallen erg makkelijk de kans om gegevens
                 van jouw omgevingen te achterhalen.</p>
             </div>
+        </div>
+
+    </div>
+
+    <div id="https" class="row">
+        <div class="col-9">
+            <div class="block" >
+                <h2 class="h2">3. Voorzie je websites van een SSL-Certicifaat</h2>
+                <p></p>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="block">
+            content block
+            </div>
+
         </div>
 
     </div>
