@@ -17,7 +17,8 @@
         </div>
         <div class="col-6">
             <div class="block">
-                <h3 class="h3">Checklist</h3>
+                <h3 class="h3">Checklist <a href="{{route('avg')}}#servers" data-toggle="tooltip"
+                                            target="_blank" title="Waarom is dit belangrijk?"><i class="fa fa-info-circle blue link"></i></a></h3>
                 <table class="table">
                     <tbody>
                     <tr>

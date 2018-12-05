@@ -17,77 +17,82 @@
 
 @endphp
 <div class="block">
-<table class="table">
-    <thead>
-    <h3 class="h3">Belangrijkste Versies</h3>
-    <tr class="blue">
-        <th scope="col">Status</th>
-        <th scope="col">Type</th>
-        <th scope="col">Gebruikte Versie</th>
-        <th scope="col">Nieuwste Release</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">
-            @if($statusf < 1.0)
-                <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                     title="Dit framework voldoet aan de eisen">
-            @else
-                <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
-                     title="Dit framework is mogelijk verouderd">
-            @endif
-        </th>
-        <td>Framework</td>
-        <td>{{$website->framework}} {{$versionf}}</td>
-        <td>{{$website->framework}} {{$latestf}}</td>
-    </tr>
-    <tr>
-        <th scope="row">
-            @if($statusp < 1.7)
-                <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                     title="Deze php versie voldoet">
-            @else
-                <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
-                     title="Deze php versie is verouderd en te exploiteren">
-            @endif
-        </th>
-        <td>PHP CLI</td>
-        <td>{{$versionp}}</td>
-        <td>{{$latestp}}</td>
-    </tr>
-    @if($versionhttpf != 0)
-    <tr>
-        <th scope="row">
-            @if($statushttpf < 0.5)
-                <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                     title="Dit onderdeel voldoet">
-            @else
-                <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                     title="Dit onderdeel mag wel een update gebruiken, maar geeft op dit moment geen beveilingsrisico's">
-            @endif
-        </th>
-        <td>Symfony/Http</td>
-        <td>{{$versionhttpf}}</td>
-        <td>{{$latesthttpf}}</td>
-    </tr>
-    @endif
-    @if($versionpoly != 0)
-    <tr>
-        <th scope="row">
-            @if($statuspoly < 0.5)
-                <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                     title="Dit onderdeel voldoet">
-            @else
-                <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                     title="Dit onderdeel mag wel een update gebruiken, maar geeft op dit moment geen beveilingsrisico's">
-            @endif
-        </th>
-        <td>Symfony/Polyfill</td>
-        <td>{{$versionpoly}}</td>
-        <td>{{$latestpoly}}</td>
-    </tr>
+    <table class="table">
+        <thead>
+        <h3 class="h3">Belangrijkste Versies</h3>
+        <tr class="blue">
+            <th scope="col">Status</th>
+            <th scope="col">Type</th>
+            <th scope="col">Gebruikte Versie</th>
+            <th scope="col">Nieuwste Release</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">
+                @if($statusf < 1.0)
+                    <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                         title="Dit framework voldoet aan de eisen">
+                @else
+                    <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                         title="Dit framework is mogelijk verouderd">
+                @endif
+            </th>
+            <td>Framework &nbsp;
+                <a href="{{route('avg')}}#framework" data-toggle="tooltip"
+                   target="_blank" title="Waarom is dit belangrijk?"><i class="fa fa-info-circle orange link"></i></a>
+            </td>
+            <td>{{$website->framework}} {{$versionf}}</td>
+            <td>{{$website->framework}} {{$latestf}}</td>
+        </tr>
+        <tr>
+            <th scope="row">
+                @if($statusp < 1.7)
+                    <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                         title="Deze php versie voldoet">
+                @else
+                    <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                         title="Deze php versie is verouderd en te exploiteren">
+                @endif
+            </th>
+            <td>PHP &nbsp;<a href="{{route('avg')}}#php" data-toggle="tooltip"
+                             target="_blank" title="Waarom is dit belangrijk?"><i
+                            class="fa fa-info-circle orange link"></i></a></td>
+            <td>{{$versionp}}</td>
+            <td>{{$latestp}}</td>
+        </tr>
+        @if($versionhttpf != 0)
+            <tr>
+                <th scope="row">
+                    @if($statushttpf < 0.5)
+                        <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                             title="Dit onderdeel voldoet">
+                    @else
+                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                             title="Dit onderdeel mag wel een update gebruiken, maar geeft op dit moment geen beveilingsrisico's">
+                    @endif
+                </th>
+                <td>Symfony/Http</td>
+                <td>{{$versionhttpf}}</td>
+                <td>{{$latesthttpf}}</td>
+            </tr>
         @endif
-    </tbody>
-</table>
+        @if($versionpoly != 0)
+            <tr>
+                <th scope="row">
+                    @if($statuspoly < 0.5)
+                        <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                             title="Dit onderdeel voldoet">
+                    @else
+                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                             title="Dit onderdeel mag wel een update gebruiken, maar geeft op dit moment geen beveilingsrisico's">
+                    @endif
+                </th>
+                <td>Symfony/Polyfill</td>
+                <td>{{$versionpoly}}</td>
+                <td>{{$latestpoly}}</td>
+            </tr>
+        @endif
+        </tbody>
+    </table>
 </div>

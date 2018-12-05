@@ -50,7 +50,7 @@
                 <div class="block">
                     <h2 class="h3">Plugins
                         <a href="{{route('avg')}}#plugins" data-toggle="tooltip"
-                           target="_blank" title="Wat is dit?"><i class="fa fa-info-circle blue link"></i></a>
+                           target="_blank" title="Wat is dit?"><i class="fa fa-info-circle orange link"></i></a>
                         @if(count($plugins) < 4)
                             <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                                  title="Er zijn problemen met het laden van de plugins">
