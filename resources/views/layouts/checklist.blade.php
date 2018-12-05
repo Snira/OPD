@@ -19,6 +19,7 @@
             @endif
         </th>
         <td>Website bereikbaar?</td>
+
     </tr>
     <tr>
         <th>
@@ -30,7 +31,9 @@
                      title="{{$website->name()}} heeft geen geldig SSL-Certificaat">
             @endif
         </th>
-        <td>SSL-Certificaat?</td>
+        <td>SSL-Certificaat? &nbsp;<a href="{{route('avg')}}#https" data-toggle="tooltip"
+                                target="_blank" title="Een wat?"><i class="fa fa-info-circle orange link"></i></a> </td>
+
     </tr>
     </tbody>
 </table>
