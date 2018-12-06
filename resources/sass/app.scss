@@ -130,6 +130,12 @@ p {
 .blue{
   color:$Blue !important;
 }
+.lightblue{
+  color: $LightBlue;
+}
+.orange{
+  color:$orange;
+}
 .head{
   margin-bottom: 2%;
 }
@@ -140,3 +146,6 @@ thead{
 tr{
   border:none;
 }
+
+
+

@@ -10,12 +10,13 @@
         @foreach($servers as $server)
             <div class="col-6">
                 <div class="block">
-                    <a href="{{route('server',$server->nodeName())}}" class="h1 link">{{$server->nodeName()}}</a>
+                    <a href="{{route('server',$server->nodeName())}}" data-toggle="tooltip" class="h1 link"
+                       title="Klik om de pagina in te zien voor info over server en bijbehorende websites">{{$server->nodeName()}}</a>
                     <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                         title="Deze Server voldoet 100% aan de AVG!">
+                         title="De Server voldoet aan de AVG!">
                     <p>{{$server->OSVersion()}}</p>
                     <hr>
-                    <h3 class="h3">Websites</h3>
+                    <h3 class="h3" data-toggle="tooltip" title="Open de server-pagina voor alle websites">Websites</h3>
                     <ul>
                         @foreach($server->websiteCollection() as $website)
                             @if($website instanceof \App\Website)
@@ -25,10 +26,14 @@
                                     <p>{{$website->frameworkVersion()}} {{$website->framework}}</p>
                                 </li>
                             @endif
+                            @if($loop->index == 5)
+                                @break
+                            @endif
                         @endforeach
                     </ul>
-                    <hr>
-                    <h3 class="h3">Subdomeinen</h3>
+                </div>
+                <div class="block">
+                    <h3 class="h3" data-toggle="tooltip" title="Open de server-pagina voor alle domeinen">Subdomeinen</h3>
                     <ul>
                         @foreach($server->websiteCollection() as $website)
                             @if($website instanceof \App\Directory)
@@ -36,6 +41,9 @@
                                     <a class="h4 link"
                                        href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
                                 </li>
+                            @endif
+                            @if($loop->index == 5)
+                                @break
                             @endif
                         @endforeach
                     </ul>

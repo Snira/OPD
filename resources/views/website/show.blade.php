@@ -6,7 +6,6 @@
         $webstatus++;
         }
     }
-
 @endphp
 @extends('layouts.app')
 <body>
@@ -14,36 +13,50 @@
     <div class="row">
         <div class="col-12">
             <div class="head">
-                <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
-                   title="Klik om de website te openen">{{$website->name()}}</a>
-                @if(isset($webstatus) && $webstatus == 0)
-                    <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                         title="Deze Website voldoet aan de regelgeving">
-                @elseif(isset($webstatus) && $webstatus != 0)
-                    <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
-                         title="Deze website heeft aandacht nodig">
+                @if($website instanceof \App\Website)
+                    <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
+                       title="Klik om de website te openen">{{$website->name()}}</a>
+                @else
+                    <h1 class="h1">{{$website->name()}}</h1>
+                @endif
+                @if($website instanceof \App\Website)
+                    @if(isset($webstatus) && $webstatus == 0)
+                        <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze Website voldoet aan de regelgeving">
+                    @elseif(isset($webstatus) && $webstatus =! 0 && $webstatus < 2)
+                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze website heeft aandacht nodig">
+                    @else
+                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                             title="Deze website loopt risico!">
+                    @endif
                 @endif
             </div>
 
         </div>
 
         <div class="col-6">
-            <div class="block">
-                @if($website instanceof \App\Website)
-                    @include('.layouts.checklist')
-                    @include('.layouts.versiontable')
-                @else
-                    <p>Dit is een subdomein.</p>
-                @endif
-
-            </div>
+            @if($website instanceof \App\Website)
+                @include('.layouts.checklist')
+                @include('.layouts.versiontable')
+            @else
+                @include('layouts.subdomains')
+            @endif
         </div>
 
         @if($website instanceof \App\Website)
             {{--Kolom voor plugins--}}
             <div class="col-6">
                 <div class="block">
-                    <h2 class="h3">Plugins</h2>
+                    <h2 class="h3">Plugins
+                        <a href="{{route('avg')}}#plugins" data-toggle="tooltip"
+                           target="_blank" title="Wat is dit?"><i class="fa fa-info-circle orange link"></i></a>
+                        @if(count($plugins) < 4)
+                            <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                                 title="Er zijn problemen met het laden van de plugins">
+                        @endif
+                    </h2>
+
                     <hr>
                     <ul id="plugins" class="">
                         @foreach($plugins as $plugin)
@@ -54,22 +67,8 @@
                 </div>
                 {{$plugins->setPath($website->name())->render()}}
             </div>
-        @else
-            {{--Kolom voor subdomeinen--}}
-            <div class="col-6">
-                <div class="block">
-                    <h2 class="h2">Domeinen</h2>
-                    <ul id="plugins" class="">
-                        @foreach($website->subDomains() as $domain)
-                            <li><a class="link blue"
-                                   href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a>
-                            </li>
-                        @endforeach
 
-                    </ul>
-                </div>
-                {{$website->subDomains()->setPath($website->name())->render()}}
-            </div>
+
         @endif
     </div>
 

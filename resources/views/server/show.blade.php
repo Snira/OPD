@@ -1,3 +1,8 @@
+@php
+    /** @var $website \App\Website
+    ** @var $server \App\Server
+    */
+@endphp
 @extends('layouts.app')
 <body>
 <div class="container">
@@ -12,7 +17,8 @@
         </div>
         <div class="col-6">
             <div class="block">
-                <h3 class="h3">Checklist</h3>
+                <h3 class="h3">Checklist <a href="{{route('avg')}}#servers" data-toggle="tooltip"
+                                            target="_blank" title="Waarom is dit belangrijk?"><i class="fa fa-info-circle blue link"></i></a></h3>
                 <table class="table">
                     <tbody>
                     <tr>
@@ -44,14 +50,14 @@
                             {{$server->kernelVersion()}}
                         </td>
                     </tr>
-                    @if($server->hasPlesk())
+                    @if($server->plesk())
                         <tr>
                             <th scope="row">
                                 <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                                      title="Deze server gebruikt een recente versie van Plesk">
                             </th>
                             <td>Plesk</td>
-                            <td>{{$server->pleskVersion()}}
+                            <td>{{$server->plesk()}}
                             </td>
                         </tr>
                     @endif
@@ -63,22 +69,43 @@
         </div>
         <div class="col-6">
             <div class="block">
-                <h2 class="h2">
-                    Websites
-                </h2>
-                <ul>
+                <table class="table">
+                    <thead>
+                    <h3 class="h3">Websites</h3>
+                    <tr class="blue">
+                        <th scope="col">Status</th>
+                        <th scope="col">Website</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
                     @foreach($server->websiteCollection() as $website)
-                        @if($website instanceof \App\Website)
-                            <li>
-                                <a class="h4 link"
-                                   href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
-                                <p>{{$website->frameworkVersion()}} {{$website->framework}}</p>
-                            </li>
-                        @endif
+                        <tr>
+                            @if($website instanceof \App\Website)
+                                <td>
+                                    @if($website->status('',$website->directory) == 0)
+                                        <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
+                                             title="Deze website lijkt oké!">
+                                    @elseif($website->status('',$website->directory) == 1)
+                                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                                             title="Deze website heeft aandacht nodig">
+                                    @else
+                                        <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
+                                             title="Deze website loopt risico's!">
+                                    @endif</td>
+                                <td><a class="h4 link"
+                                       href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
+                                    <p>{{$website->frameworkVersion()}} {{$website->framework}}</p></td>
+
+
+                            @endif
+                        </tr>
                     @endforeach
-                </ul>
 
-
+                    </tbody>
+                </table>
+            </div>
+            <div class="block">
                 <h2 class="h2">
                     Subdomeinen
                 </h2>
@@ -92,7 +119,6 @@
                             </li>
                             @endforeach
                 </ul>
-
             </div>
         </div>
 

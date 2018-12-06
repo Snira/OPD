@@ -12,11 +12,13 @@ class Website
     private $ssh;
     public $directory;
     public $framework;
+    public $status;
 
     public function __construct(SSH2 $ssh, string $directory)
     {
         $this->ssh = $ssh;
         $this->directory = $directory;
+        $this->status = 0;
     }
 
     /**
@@ -29,6 +31,41 @@ class Website
         return $this->ssh->exec("cd /var/www/vhosts/'$this->directory';" . $command);
     }
 
+    /**
+     * Returns status of website
+     *
+     * @param $serverDir
+     * @param $websiteDir
+     *
+     */
+    public function status($domainDir, $websiteDir)
+    {
+
+        $php = substr($this->ssh->exec("cd /var/www/vhosts/'$domainDir'/'$websiteDir'; php -v"), 4, 5);
+
+        if (!$this->https() & $this->online()){
+            $this->status ++;
+        }
+        if ((float)$php < 5.6){
+            $this->status ++;
+        }
+
+        $v = (float)$this->frameworkVersion();
+
+        if ($v - 5 > 1){
+            $this->status ++;
+        }
+
+        return $this->status;
+
+
+    }
+
+    /**
+     * Returns name of website
+     *
+     * @return string
+     */
     public function name()
     {
         $arr = explode("/", $this->directory, 2);
@@ -96,7 +133,7 @@ class Website
         if (substr($data[0], 0, 7) == 'Warning') {
             $data = ['Er is een fout bij het ophalen van plugins', 'De server geeft het volgende terug: ', $data[0]];
         };
-        $data2 = paginateCollection($data, 5);
+        $data2 = paginateCollection($data, 8);
         return $data2;
     }
 
@@ -118,8 +155,8 @@ class Website
      */
     public function online()
     {
-        $this->run('ping -c 3 '.$this->name());
-        if (!$this->ssh->getExitStatus()){
+        $this->run('ping -c 3 ' . $this->name());
+        if (!$this->ssh->getExitStatus()) {
             return true;
         }
         return false;
@@ -143,13 +180,13 @@ class Website
     public function symfonyhttp()
     {
         $data = explode("\n", $this->run('composer show symfony/http-foundation'));
-        return substr($data[3], 14,6);
+        return substr($data[3], 14, 6);
     }
 
     public function polyfill()
     {
         $data = explode("\n", $this->run('composer show symfony/polyfill-php56'));
-        return substr($data[3], 14,6);
+        return substr($data[3], 14, 6);
     }
 
 

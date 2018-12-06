@@ -14,6 +14,8 @@
 
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/bewustwording','HomeController@avg')->name('avg');
+
 Route::get('/{nodename}', 'HomeController@show')->name('server');
 Route::get('/{nodename}/{website}', 'WebsiteController@website')->name('website');
 Route::get('/{nodename}/{website}/{directory}', 'WebsiteController@subDomain')->name('subdomain');
