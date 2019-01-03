@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Directory;
 use App\LatestVersions;
 use App\Website;
 use Illuminate\Support\Facades\Input;
@@ -26,13 +27,14 @@ class WebsiteController extends Controller
 
     public function website($nodename, $websiteName)
     {
-        $query = Input::get('search');
-        if (!$query) {
-            $query = '*';
-        }
+
         $server = server($nodename);
         $website = website($server, $websiteName);
-        $domains = $website->subDomains();
+        $domains = null;
+        if($website instanceof Directory){
+            $domains = $website->subDomains();
+        }
+
         return view('website.show', ['website' => $website, 'server' => $server, 'latestVersions' => $this->latestVersions, 'domains' => $domains]);
     }
 

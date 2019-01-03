@@ -11,7 +11,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-18">
+        <div class="col-12">
             <div class="head">
                 @if($website instanceof \App\Website)
                     <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
