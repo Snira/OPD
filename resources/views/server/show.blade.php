@@ -18,7 +18,8 @@
         <div class="col-6">
             <div class="block">
                 <h3 class="h3">Checklist <a href="{{route('avg')}}#servers" data-toggle="tooltip"
-                                            target="_blank" title="Waarom is dit belangrijk?"><i class="fa fa-info-circle blue link"></i></a></h3>
+                                            target="_blank" title="Waarom is dit belangrijk?"><i
+                                class="fa fa-info-circle blue link"></i></a></h3>
                 <table class="table">
                     <tbody>
                     <tr>
@@ -83,16 +84,10 @@
                         <tr>
                             @if($website instanceof \App\Website)
                                 <td>
-                                    @if($website->status('',$website->directory) == 0)
-                                        <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
-                                             title="Deze website lijkt oké!">
-                                    @elseif($website->status('',$website->directory) == 1)
-                                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                                             title="Deze website heeft aandacht nodig">
-                                    @else
-                                        <img src="/img/redx.png" class="checkmark" data-toggle="tooltip"
-                                             title="Deze website loopt risico's!">
-                                    @endif</td>
+
+                                    <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                                         title="Deze website heeft aandacht nodig">
+
                                 <td><a class="h4 link"
                                        href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
                                     <p>{{$website->frameworkVersion()}} {{$website->framework}}</p></td>

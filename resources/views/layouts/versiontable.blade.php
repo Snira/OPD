@@ -47,7 +47,7 @@
         </tr>
         <tr>
             <th scope="row">
-                @if($statusp < 1.7)
+                @if($statusp < 1.8)
                     <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                          title="Deze php versie voldoet">
                 @else

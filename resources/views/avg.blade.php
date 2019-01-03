@@ -41,8 +41,7 @@
                 <h2 class="h2">2. Gebruik een php versie die ondersteunt wordt</h2>
                 <p>Ook je PHP versie kan outdated raken. Door gebruik te maken van een oude php versie, geef je
                     kwaadwillende in sommige gevallen erg makkelijk de kans om gegevens
-                    van jouw omgevingen te achterhalen. Door je website van een SSL-Certificaat te voorzien, maak je
-                    gebruik van deze veiligere manier van verbinden.</p>
+                    van jouw omgevingen te achterhalen. Check daarom via deze applicatie regelmatig de websites op hun php versies.</p>
             </div>
         </div>
     </div>
@@ -53,9 +52,7 @@
                 <h2 class="h2">3. Voorzie je websites van een SSL-Certicifaat</h2>
                 <p>Door gebruik te maken van HTTPS (HyperText Transfer Protocol: Secure) worden eventuele gegevens
                     tussen je website en de gebruikers beter afgeschermd, door gebruik te maken van
-                    nieuwere en veiligere protocollen.</p>
-                <p>Lees <a href="" data-toggle="tooltip" title="Yeah, let's go!" class="link blue">hier</a> hoe je dit
-                    regelt.</p>
+                    nieuwere en veiligere protocollen. Op deze manier maakt de website, zoals noodzakelijk is volgens de AVG, gebruik van pseudonimisering: het versleutelen van gevevens.</p>
             </div>
         </div>
         <div class="col-3">

@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use phpseclib\Net\SSH2;
 
 class Directory
@@ -24,21 +25,38 @@ class Directory
         return $this->directory;
     }
 
-    public function subDomains(){
+    public function subDomains()
+    {
         $websites = collect();
-        $directories = explode("\n", $this->run('cd /var/www/vhosts/'. $this->directory. '; ls | grep \'.nl\''));
+        $directories = explode("\n", $this->run('cd /var/www/vhosts/' . $this->directory . '; ls | grep \'.nl\''));
         array_pop($directories);
 
         foreach ($directories as $websiteDirectory) {
             $website = new Website($this->ssh, $websiteDirectory);
             $websites->push($website);
         }
-        $data = paginateCollection($websites,10);
+        $data = paginateCollection($websites, 10);
         return $data;
     }
 
-    public function website($directory){
-        $website = new Website($this->ssh, $this->directory.'/'.$directory);
+    public function website($directory)
+    {
+        $website = new Website($this->ssh, $this->directory . '/' . $directory);
         return $website;
+    }
+
+    public function search(string $query)
+    {
+        $websites = collect();
+        $directories = explode("\n", $this->run('cd /var/www/vhosts/' . $this->directory . '; ls | grep \'.nl\''));
+        array_pop($directories);
+
+        foreach ($directories as $websiteDirectory) {
+            if (strstr($websiteDirectory, $query) !== false) {
+                $website = new Website($this->ssh, $websiteDirectory);
+                $websites->push($website);
+            }
+        }
+        return $websites;
     }
 }

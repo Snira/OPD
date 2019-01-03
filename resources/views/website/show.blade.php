@@ -11,7 +11,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-18">
             <div class="head">
                 @if($website instanceof \App\Website)
                     <a href="https://{{$website->name()}}" target="_blank" class="h1 link" data-toggle="tooltip"
@@ -23,9 +23,9 @@
                     @if(isset($webstatus) && $webstatus == 0)
                         <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                              title="Deze Website voldoet aan de regelgeving">
-                    @elseif(isset($webstatus) && $webstatus =! 0 && $webstatus < 2)
-                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                             title="Deze website heeft aandacht nodig">
+                    @elseif(isset($webstatus) && $webstatus =! 0 && $webstatus < 2)h
+                    <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                         title="Deze website heeft aandacht nodig">
                     @else
                         <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                              title="Deze website loopt risico!">
@@ -35,26 +35,31 @@
 
         </div>
 
-        <div class="col-6">
-            @if($website instanceof \App\Website)
+
+        @if($website instanceof \App\Website)
+            <div class="col-6">
                 @include('.layouts.checklist')
                 @include('.layouts.versiontable')
-            @else
+            </div>
+        @else
+            <div class="col-12">
                 @include('layouts.subdomains')
-            @endif
-        </div>
+            </div>
+
+        @endif
+
 
         @if($website instanceof \App\Website)
             {{--Kolom voor plugins--}}
             <div class="col-6">
                 <div class="block">
                     <h2 class="h3">Plugins
-                        <a href="{{route('avg')}}#plugins" data-toggle="tooltip"
-                           target="_blank" title="Wat is dit?"><i class="fa fa-info-circle orange link"></i></a>
                         @if(count($plugins) < 4)
                             <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                                  title="Er zijn problemen met het laden van de plugins">
                         @endif
+                        <a href="{{route('avg')}}#plugins" data-toggle="tooltip"
+                           target="_blank" title="Wat is dit?"><i class="fa fa-info-circle orange link"></i></a>
                     </h2>
 
                     <hr>

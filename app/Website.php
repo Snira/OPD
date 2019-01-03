@@ -12,13 +12,11 @@ class Website
     private $ssh;
     public $directory;
     public $framework;
-    public $status;
 
     public function __construct(SSH2 $ssh, string $directory)
     {
         $this->ssh = $ssh;
         $this->directory = $directory;
-        $this->status = 0;
     }
 
     /**
@@ -31,35 +29,6 @@ class Website
         return $this->ssh->exec("cd /var/www/vhosts/'$this->directory';" . $command);
     }
 
-    /**
-     * Returns status of website
-     *
-     * @param $serverDir
-     * @param $websiteDir
-     *
-     */
-    public function status($domainDir, $websiteDir)
-    {
-
-        $php = substr($this->ssh->exec("cd /var/www/vhosts/'$domainDir'/'$websiteDir'; php -v"), 4, 5);
-
-        if (!$this->https() & $this->online()){
-            $this->status ++;
-        }
-        if ((float)$php < 5.6){
-            $this->status ++;
-        }
-
-        $v = (float)$this->frameworkVersion();
-
-        if ($v - 5 > 1){
-            $this->status ++;
-        }
-
-        return $this->status;
-
-
-    }
 
     /**
      * Returns name of website
