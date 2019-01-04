@@ -23,7 +23,7 @@
                     @if(isset($webstatus) && $webstatus == 0)
                         <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                              title="Deze Website voldoet aan de regelgeving">
-                    @elseif(isset($webstatus) && $webstatus =! 0 && $webstatus < 2)h
+                    @elseif(isset($webstatus) && $webstatus =! 0 && $webstatus < 2)
                     <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                          title="Deze website heeft aandacht nodig">
                     @else
@@ -32,7 +32,6 @@
                     @endif
                 @endif
             </div>
-
         </div>
 
 
@@ -45,23 +44,19 @@
             <div class="col-12">
                 @include('layouts.subdomains')
             </div>
-
         @endif
-
 
         @if($website instanceof \App\Website)
             {{--Kolom voor plugins--}}
             <div class="col-6">
                 <div class="block">
-                    <h2 class="h3">Plugins
-                        @if(count($plugins) < 4)
-                            <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                                 title="Er zijn problemen met het laden van de plugins">
-                        @endif
-                        <a href="{{route('avg')}}#plugins" data-toggle="tooltip"
-                           target="_blank" title="Wat is dit?"><i class="fa fa-info-circle orange link"></i></a>
-                    </h2>
-
+                    <a class="h3 blue" href="{{route('avg')}}#plugins" data-toggle="tooltip"
+                                       target="_blank" title="Wat is dit?">Plugins
+                    </a>
+                    @if(count($plugins) < 4)
+                        <img src="/img/warning.png" class="checkmark" height="20%" data-toggle="tooltip"
+                             title="Er zijn problemen met het laden van de plugins">
+                    @endif
                     <hr>
                     <ul id="plugins" class="">
                         @foreach($plugins as $plugin)

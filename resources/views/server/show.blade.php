@@ -13,13 +13,11 @@
                 <h1 class="h1">{{$server->nodeName()}}</h1>
 
             </div>
-
         </div>
         <div class="col-6">
             <div class="block">
-                <h3 class="h3">Checklist <a href="{{route('avg')}}#servers" data-toggle="tooltip"
-                                            target="_blank" title="Waarom is dit belangrijk?"><i
-                                class="fa fa-info-circle blue link"></i></a></h3>
+                <a class="h3 blue" href="{{route('avg')}}#servers" data-toggle="tooltip"
+                   target="_blank" title="Waarom is dit belangrijk?">Server Checklist </a>
                 <table class="table">
                     <tbody>
                     <tr>

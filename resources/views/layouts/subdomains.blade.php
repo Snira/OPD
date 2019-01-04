@@ -15,7 +15,7 @@
                 <input class="float-right" type="text" id="search" name="search" placeholder="Zoek naar website...">
             </form>
 
-            <tr class="blue">
+            <tr class="darkblue">
                 <th scope="col">Status</th>
                 <th scope="col">Website</th>
             </tr>

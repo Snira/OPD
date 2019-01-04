@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-12">
             <div class="block">
+                <span id="framework"></span>
                 <h1 class="h1">The Big Five</h1>
                 <p>Om onze digitale omgevingen te laten voldoen aan de AVG op gebied van beveiliging, zijn er vijf
                     onderdelen waar rekening mee
@@ -12,7 +13,7 @@
         </div>
     </div>
 
-    <div id="framework" class="row">
+    <div class="row">
         <div class="col-9">
             <div class="block">
                 <h2 class="h2">1. Update je frameworks indien mogelijk</h2>
@@ -22,6 +23,7 @@
                     steeds bovenaan de lijst van de
                     <a target="_blank" class="link blue" href="https://www.owasp.org/index.php/Top_10-2017_Top_10"
                        data-toggle="tooltip" title="De wat?">OWASP top 10</a> staat.</p>
+                <span id="php"></span>
             </div>
         </div>
         <div class="col-3">
@@ -30,29 +32,32 @@
                  class="float-left">
         </div>
     </div>
-    <div id="php" class="row">
+    <div class="row">
         <div class="col-3">
             <img src="/img/php.png"
                  style="height: 180px; width: 260px; border-radius: 5px; margin-top: 0; margin-left: 0"
                  class="float-left">
         </div>
         <div class="col-9">
+            <span id="https"></span>
             <div class="block">
                 <h2 class="h2">2. Gebruik een php versie die ondersteunt wordt</h2>
                 <p>Ook je PHP versie kan outdated raken. Door gebruik te maken van een oude php versie, geef je
                     kwaadwillende in sommige gevallen erg makkelijk de kans om gegevens
                     van jouw omgevingen te achterhalen. Check daarom via deze applicatie regelmatig de websites op hun php versies.</p>
+
             </div>
         </div>
     </div>
 
-    <div id="https" class="row">
+    <div class="row">
         <div class="col-9">
             <div class="block">
                 <h2 class="h2">3. Voorzie je websites van een SSL-Certicifaat</h2>
                 <p>Door gebruik te maken van HTTPS (HyperText Transfer Protocol: Secure) worden eventuele gegevens
                     tussen je website en de gebruikers beter afgeschermd, door gebruik te maken van
                     nieuwere en veiligere protocollen. Op deze manier maakt de website, zoals noodzakelijk is volgens de AVG, gebruik van pseudonimisering: het versleutelen van gevevens.</p>
+            <span id="plugins"></span>
             </div>
         </div>
         <div class="col-3">
@@ -63,7 +68,7 @@
         </div>
     </div>
 
-    <div id="plugins" class="row">
+    <div class="row">
         <div class="col-3">
             <img src="/img/plugins.png"
                  style="height: 180px; width: 260px; border-radius: 5px; margin-top: 5%; margin-left: 1%"
@@ -78,11 +83,12 @@
                 <p>Dit dashboard biedt ook de mogelijkheid om per website in te zien welke extra's er gebruikt worden.
                     Loop deze af en toe even na of de versies niet te oud zijn, of dat er
                     onderdelen tussen staan die niet meer gebruikt worden.</p>
+                <span id="servers"></span>
             </div>
         </div>
     </div>
 
-    <div id="servers" class="row">
+    <div class="row">
         <div class="col-9">
             <div class="block">
                 <h2 class="h2">5. Update je servers!</h2>

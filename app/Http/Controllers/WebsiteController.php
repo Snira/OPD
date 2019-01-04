@@ -27,7 +27,6 @@ class WebsiteController extends Controller
 
     public function website($nodename, $websiteName)
     {
-
         $server = server($nodename);
         $website = website($server, $websiteName);
         $domains = null;
