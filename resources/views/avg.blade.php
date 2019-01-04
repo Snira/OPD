@@ -63,7 +63,7 @@
         <div class="col-3">
             <img src="/img/ssl.png" alt="Groen slotje voor HTTPS" data-toggle="tooltip"
                  title="Een groen slotje geeft aan dat de website een geldig SSL-Certificaat heeft"
-                 style="height: 190px; width: 260px; border-radius: 5px; margin-top: 0; margin-left: -1%"
+                 style="height: 200px; width: 260px; border-radius: 5px; margin-top: 0; margin-left: -1%"
                  class="float-left">
         </div>
     </div>
@@ -71,7 +71,7 @@
     <div class="row">
         <div class="col-3">
             <img src="/img/plugins.png"
-                 style="height: 180px; width: 260px; border-radius: 5px; margin-top: 5%; margin-left: 1%"
+                 style="height: 210px; width: 260px; border-radius: 5px; margin-top: 1.5%; margin-left: 1%"
                  class="float-left">
         </div>
         <div class="col-9">
