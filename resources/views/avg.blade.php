@@ -108,8 +108,8 @@
     <div class="row">
         <div class="col-12">
             <div class="block">
-                <h3 class="h3 blue">Bedankt!</h3>
-                <p>Door deze punten de onthouden en toe te passen, zorg jij ervoor dat wij veilig omgaan met gegevens
+                <h3 class="h3 darkblue">Bedankt!</h3>
+                <p>Door deze punten te onthouden en toe te passen, zorg jij ervoor dat wij veilig omgaan met gegevens
                     van anderen. Dat is niet alleen fijn voor de gebruikers,
                     maar zorgt er ook voor dat wij een betrouwbare partij zijn.</p>
             </div>

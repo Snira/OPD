@@ -71,7 +71,7 @@
                 <table class="table">
                     <thead>
                     <h3 class="h3">Websites</h3>
-                    <tr class="blue">
+                    <tr class="darkblue">
                         <th scope="col">Status</th>
                         <th scope="col">Website</th>
                     </tr>
