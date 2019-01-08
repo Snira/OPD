@@ -27,7 +27,7 @@
                         <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                              title="Deze website heeft aandacht nodig">
                     </td>
-                    <td><a class="link blue"
+                    <td><a class="link blue" onclick="load(this)"
                            href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a>
                     </td>
                 </tr>
@@ -37,6 +37,10 @@
     </div>
     {{$website->subDomains()->setPath($website->name())->render()}}
 </div>
-
+<script>
+    function load(el){
+        $(el).replaceWith($('<div class="loader">Pagina is aan het laden...</div>'));
+    }
+</script>
 
 
