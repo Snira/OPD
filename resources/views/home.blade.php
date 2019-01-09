@@ -4,7 +4,7 @@
     ** @var $server \App\Server
     */
 @endphp
-<body>
+@section('content')
 <div class="container">
     <div class="row">
         @foreach($servers as $server)
@@ -21,7 +21,7 @@
                         @foreach($server->websiteCollection() as $website)
                             @if($website instanceof \App\Website)
                                 <li>
-                                    <a class="h4 link"
+                                    <a class="h4 link" onclick="load('{{$website->directory}}')"
                                        href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
                                     <p>{{$website->frameworkVersion()}} {{$website->framework}}</p>
                                 </li>
@@ -36,7 +36,7 @@
                         @foreach($server->websiteCollection() as $website)
                             @if($website instanceof \App\Directory)
                                 <li>
-                                    <a class="h4 link"
+                                    <a class="h4 link" onclick="load('{{$website->directory}}')"
                                        href="{{route('website',[$server->nodeName(), $website->directory])}}">{{$website->directory}}</a>
                                 </li>
                             @endif
@@ -50,7 +50,11 @@
 
         @endforeach
     </div>
-
 </div>
-</body>
-</html>
+<script>
+    function load(name){
+        $('.row').replaceWith('<div id="loading"><p>Laden van '+ name +'...</p> <br> <p>Dit kan enkele seconden duren, afhankelijk van het aantal fouten</p></div>');
+        $('.container').append('<div class="loader"></div>');
+    }
+</script>
+@endsection
