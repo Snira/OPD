@@ -1,6 +1,6 @@
 {{--Kolom voor subdomeinen--}}
 
-<div style="margin-left: -5%" class="col-9">
+<div id="table" style="margin-left: -5%" class="col-9">
     <div class="block">
         <table class="table">
             <thead>
@@ -27,7 +27,7 @@
                         <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                              title="Deze website heeft aandacht nodig">
                     </td>
-                    <td><a class="link blue" onclick="load(this)"
+                    <td><a class="link blue" onclick="load('{{$domain->directory}}')"
                            href="{{route('subdomain', [$server->nodeName(), $website->directory, $domain->directory])}}">{{$domain->directory}}</a>
                     </td>
                 </tr>
@@ -37,10 +37,11 @@
     </div>
     {{$website->subDomains()->setPath($website->name())->render()}}
 </div>
+
 <script>
-    function load(el){
-        $(el).replaceWith($('<div class="loader">Pagina is aan het laden...</div>'));
+    function load(name){
+       $('#table').replaceWith('<div id="loading"><p>Laden van '+ name +'...</p> <br> <p>Dit kan enkele seconden duren, afhankelijk van het aantal fouten</p></div>');
+       $('.container').append('<div class="loader"></div>');
     }
 </script>
-
 

@@ -54,8 +54,11 @@
                                        target="_blank" title="Wat is dit?">Plugins
                     </a>
                     @if(count($plugins) < 4)
-                        <img src="/img/warning.png" class="checkmark" height="20%" data-toggle="tooltip"
+                        <img src="/img/redx.png" class="checkmark" height="20%" data-toggle="tooltip"
                              title="Er zijn problemen met het laden van de plugins">
+                        @else
+                        <img src="/img/checkmark.png" class="checkmark" height="20%" data-toggle="tooltip"
+                             title="Plugins geven geen foutmeldingen">
                     @endif
                     <hr>
                     <ul id="plugins" class="">
