@@ -28,7 +28,7 @@
                 @if(Route::currentRouteName() == 'avg')
                     <li class="nav-item">
                         > &nbsp;
-                        <a class="linknav" href="{{route('avg')}}">Bewustwording AVG</a>
+                        <a class="linknav" href="{{route('avg')}}">Bewustwording Beveiliging</a>
                     </li>
                 @endif
             </ul>
@@ -38,7 +38,7 @@
     @if(Route::currentRouteName() != 'avg')
         <nav id="avg">
             |&nbsp;
-            <a class="linknav" target="_blank" data-toggle="tooltip" title="Klik hier op als je iets wilt leren!" href="{{route('avg')}}">Bewustwording AVG</a>
+            <a class="linknav" target="_blank" data-toggle="tooltip" title="Klik hier op als je iets wilt leren!" href="{{route('avg')}}">Bewustwording Beveiliging</a>
         </nav>
     @endif
 </header>
