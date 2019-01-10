@@ -5,10 +5,9 @@
         <div class="col-12">
             <div class="block">
                 <span id="framework"></span>
-                <h1 class="h1">The Big Five</h1>
-                <p>Om onze digitale omgevingen te laten voldoen aan de AVG op gebied van beveiliging, zijn er vijf
-                    onderdelen waar rekening mee
-                    gehouden moet worden.</p>
+                <h1 class="h1">Beveiligen van persoonsgegevens</h1>
+                <p>Om onze digitale omgevingen te laten voldoen aan de AVG, is het vooral belangrijk dat de beveiliging op orde is van deze omgevingen. Dit kan gedaan worden door met vijf
+                    onderdelen rekening te houden.</p>
             </div>
         </div>
     </div>
