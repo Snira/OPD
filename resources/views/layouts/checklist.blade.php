@@ -31,8 +31,8 @@
                          title="{{$website->name()}} heeft geen geldig SSL-Certificaat">
                 @endif
             </th>
-            <td><a href="{{route('avg')}}#https" class="blue" data-toggle="tooltip"
-                   target="_blank" title="Een wat?">SSL-Certificaat? &nbsp;</a></td>
+            <td><a href="{{route('avg')}}#https" class="linkavg" data-toggle="tooltip"
+                   target="_blank" title="Klik!">SSL-Certificaat?</a></td>
 
         </tr>
         </tbody>

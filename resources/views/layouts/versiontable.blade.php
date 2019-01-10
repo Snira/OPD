@@ -38,8 +38,8 @@
                          title="Dit framework is mogelijk verouderd">
                 @endif
             </th>
-            <td> <a href="{{route('avg')}}#framework" class="blue " data-toggle="tooltip"
-                    target="_blank" title="Waarom is dit belangrijk?">Framework &nbsp;
+            <td> <a href="{{route('avg')}}#framework" class="linkavg" data-toggle="tooltip"
+                    target="_blank" title="Klik!">Framework
                </a>
             </td>
             <td>{{$website->framework}} {{$versionf}}</td>
@@ -55,8 +55,8 @@
                          title="Deze php versie is verouderd en te exploiteren">
                 @endif
             </th>
-            <td><a href="{{route('avg')}}#php" class="blue" data-toggle="tooltip"
-                   target="_blank" title="Waarom is dit belangrijk?">PHP &nbsp;</a></td>
+            <td><a href="{{route('avg')}}#php" class="linkavg" data-toggle="tooltip"
+                   target="_blank" title="Klik!">PHP</a></td>
             <td>{{$versionp}}</td>
             <td>{{$latestp}}</td>
         </tr>

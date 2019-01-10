@@ -38,18 +38,15 @@ header {
 }
 nav{
   font-family: Sathu;
-  color: $White;
+  color: $White !important;
 }
 
 hr {
   border-color: $DarkBlue;
 }
-a{
-  color:$White;
-}
 
 .h1 {
-  color: $DarkBlue;
+  color: $DarkBlue !important;
   font-family: "Helvetica Neue";
   font-weight: bold;
 }
@@ -110,7 +107,25 @@ p {
 }
 
 .link:hover {
-  color: $Orange;
+  color: $Orange !important;
+  text-decoration: none !important;
+}
+
+.linkavg{
+  font-weight: bold;
+  color: $blue !important;
+  text-decoration-line: underline;
+}
+.linkavg:hover {
+  color: $Orange !important;
+  text-decoration: none;
+}
+.linknav{
+  color:$White;
+  text-decoration: none;
+}
+.linknav:hover {
+  color: $Orange !important;
   text-decoration: none !important;
 }
 
