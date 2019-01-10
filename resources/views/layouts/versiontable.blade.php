@@ -39,7 +39,7 @@
                 @endif
             </th>
             <td> <a href="{{route('avg')}}#framework" class="linkavg" data-toggle="tooltip"
-                    target="_blank" title="Klik!">Framework
+                    target="_blank" title="Dit is belangrijk, klik en lees waarom!">Framework
                </a>
             </td>
             <td>{{$website->framework}} {{$versionf}}</td>
@@ -56,7 +56,7 @@
                 @endif
             </th>
             <td><a href="{{route('avg')}}#php" class="linkavg" data-toggle="tooltip"
-                   target="_blank" title="Klik!">PHP</a></td>
+                   target="_blank" title="Dit is belangrijk, klik en lees waarom!">PHP</a></td>
             <td>{{$versionp}}</td>
             <td>{{$latestp}}</td>
         </tr>

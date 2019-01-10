@@ -51,7 +51,7 @@
             <div class="col-6">
                 <div class="block">
                     <a class="h3 linkavg" href="{{route('avg')}}#plugins" data-toggle="tooltip"
-                                       target="_blank" title="Klik!">Plugins
+                                       target="_blank" title="Dit is belangrijk, klik en lees waarom!">Plugins
                     </a>
                     @if(count($plugins) < 4)
                         <img src="/img/redx.png" class="checkmark" height="20%" data-toggle="tooltip"

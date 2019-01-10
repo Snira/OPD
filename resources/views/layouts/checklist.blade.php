@@ -32,7 +32,7 @@
                 @endif
             </th>
             <td><a href="{{route('avg')}}#https" class="linkavg" data-toggle="tooltip"
-                   target="_blank" title="Klik!">SSL-Certificaat?</a></td>
+                   target="_blank" title="Dit is belangrijk, klik en lees waarom!">SSL-Certificaat?</a></td>
 
         </tr>
         </tbody>
