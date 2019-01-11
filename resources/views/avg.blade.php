@@ -52,7 +52,7 @@
     <div class="row">
         <div class="col-9">
             <div class="block">
-                <h2 class="h2">3. Voorzie je websites van een SSL-Certicifaat</h2>
+                <h2 class="h2">3. Voorzie je websites van een SSL-Certificaat</h2>
                 <p>Door gebruik te maken van HTTPS (HyperText Transfer Protocol: Secure) worden eventuele gegevens
                     tussen je website en de gebruikers beter afgeschermd, door gebruik te maken van
                     nieuwere en veiligere protocollen. Op deze manier maakt de website, zoals noodzakelijk is volgens de AVG, gebruik van pseudonimisering: het versleutelen van gevevens.</p>
