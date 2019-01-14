@@ -1,2 +1,2 @@
 # OPD
-Online Privacy Dashboard
+Online Protection Dashboard
