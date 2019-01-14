@@ -8,7 +8,7 @@
     }
 @endphp
 @extends('layouts.app')
-<body>
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -24,39 +24,42 @@
                         <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                              title="Deze Website voldoet aan de regelgeving">
                     @elseif(isset($webstatus) && $webstatus =! 0 && $webstatus < 2)
-                        <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                             title="Deze website heeft aandacht nodig">
+                    <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                         title="Deze website heeft aandacht nodig">
                     @else
                         <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
                              title="Deze website loopt risico!">
                     @endif
                 @endif
             </div>
-
         </div>
 
-        <div class="col-6">
-            @if($website instanceof \App\Website)
+
+        @if($website instanceof \App\Website)
+            <div class="col-6">
                 @include('.layouts.checklist')
                 @include('.layouts.versiontable')
-            @else
+            </div>
+        @else
+            <div class="col-12">
                 @include('layouts.subdomains')
-            @endif
-        </div>
+            </div>
+        @endif
 
         @if($website instanceof \App\Website)
             {{--Kolom voor plugins--}}
             <div class="col-6">
                 <div class="block">
-                    <h2 class="h3">Plugins
-                        <a href="{{route('avg')}}#plugins" data-toggle="tooltip"
-                           target="_blank" title="Wat is dit?"><i class="fa fa-info-circle orange link"></i></a>
-                        @if(count($plugins) < 4)
-                            <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
-                                 title="Er zijn problemen met het laden van de plugins">
-                        @endif
-                    </h2>
-
+                    <a class="h3 linkavg" href="{{route('avg')}}#plugins" data-toggle="tooltip"
+                                       target="_blank" title="Dit is belangrijk, klik en lees waarom!">Plugins
+                    </a>
+                    @if(count($plugins) < 4)
+                        <img src="/img/redx.png" class="checkmark" height="20%" data-toggle="tooltip"
+                             title="Er zijn problemen met het laden van de plugins">
+                        @else
+                        <img src="/img/checkmark.png" class="checkmark" height="20%" data-toggle="tooltip"
+                             title="Plugins geven geen foutmeldingen">
+                    @endif
                     <hr>
                     <ul id="plugins" class="">
                         @foreach($plugins as $plugin)
@@ -67,12 +70,7 @@
                 </div>
                 {{$plugins->setPath($website->name())->render()}}
             </div>
-
-
         @endif
     </div>
-
 </div>
-
-
-</body>
+@endsection

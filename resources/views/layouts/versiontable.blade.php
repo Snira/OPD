@@ -20,7 +20,7 @@
     <table class="table">
         <thead>
         <h3 class="h3">Belangrijkste Versies</h3>
-        <tr class="blue">
+        <tr class="darkblue">
             <th scope="col">Status</th>
             <th scope="col">Type</th>
             <th scope="col">Gebruikte Versie</th>
@@ -38,16 +38,16 @@
                          title="Dit framework is mogelijk verouderd">
                 @endif
             </th>
-            <td>Framework &nbsp;
-                <a href="{{route('avg')}}#framework" data-toggle="tooltip"
-                   target="_blank" title="Waarom is dit belangrijk?"><i class="fa fa-info-circle orange link"></i></a>
+            <td> <a href="{{route('avg')}}#framework" class="linkavg" data-toggle="tooltip"
+                    target="_blank" title="Dit is belangrijk, klik en lees waarom!">Framework
+               </a>
             </td>
             <td>{{$website->framework}} {{$versionf}}</td>
             <td>{{$website->framework}} {{$latestf}}</td>
         </tr>
         <tr>
             <th scope="row">
-                @if($statusp < 1.7)
+                @if($statusp < 1.8)
                     <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                          title="Deze php versie voldoet">
                 @else
@@ -55,9 +55,8 @@
                          title="Deze php versie is verouderd en te exploiteren">
                 @endif
             </th>
-            <td>PHP &nbsp;<a href="{{route('avg')}}#php" data-toggle="tooltip"
-                             target="_blank" title="Waarom is dit belangrijk?"><i
-                            class="fa fa-info-circle orange link"></i></a></td>
+            <td><a href="{{route('avg')}}#php" class="linkavg" data-toggle="tooltip"
+                   target="_blank" title="Dit is belangrijk, klik en lees waarom!">PHP</a></td>
             <td>{{$versionp}}</td>
             <td>{{$latestp}}</td>
         </tr>

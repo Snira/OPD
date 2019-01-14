@@ -18,4 +18,5 @@ Route::get('/bewustwording','HomeController@avg')->name('avg');
 
 Route::get('/{nodename}', 'HomeController@show')->name('server');
 Route::get('/{nodename}/{website}', 'WebsiteController@website')->name('website');
+Route::post('/{nodename}/{website}', 'WebsiteController@search')->name('search');
 Route::get('/{nodename}/{website}/{directory}', 'WebsiteController@subDomain')->name('subdomain');

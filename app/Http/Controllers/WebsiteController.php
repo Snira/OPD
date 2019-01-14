@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Directory;
 use App\LatestVersions;
 use App\Website;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
 {
@@ -26,9 +29,12 @@ class WebsiteController extends Controller
     {
         $server = server($nodename);
         $website = website($server, $websiteName);
+        $domains = null;
+        if($website instanceof Directory){
+            $domains = $website->subDomains();
+        }
 
-
-        return view('website.show', ['website' => $website, 'server' => $server ,'latestVersions' => $this->latestVersions]);
+        return view('website.show', ['website' => $website, 'server' => $server, 'latestVersions' => $this->latestVersions, 'domains' => $domains]);
     }
 
 
@@ -39,8 +45,17 @@ class WebsiteController extends Controller
         $website = $directory->website($websiteName);
 
 
-        return view('website.show', ['website' => $website, 'server' => $server ,'latestVersions' => $this->latestVersions]);
+        return view('website.show', ['website' => $website, 'server' => $server, 'latestVersions' => $this->latestVersions]);
 
+    }
+
+    public function search(Request $request, $nodename, $websiteName)
+    {
+        $server = server($nodename);
+        $website = website($server, $websiteName);
+        $domains = $website->search($request->input('search'));
+
+        return view('website.show', ['website' => $website, 'server' => $server, 'latestVersions' => $this->latestVersions, 'domains' => $domains]);
     }
 
 

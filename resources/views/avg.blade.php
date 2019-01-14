@@ -1,18 +1,18 @@
 @extends('layouts.app')
-
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="block">
-                <h1 class="h1">The Big Five</h1>
-                <p>Om onze digitale omgevingen te laten voldoen aan de AVG op gebied van beveiliging, zijn er vijf
-                    onderdelen waar rekening mee
-                    gehouden moet worden.</p>
+                <span id="framework"></span>
+                <h1 class="h1">Beveiligen van persoonsgegevens</h1>
+                <p>Om onze digitale omgevingen te laten voldoen aan de AVG, is het vooral belangrijk dat de beveiliging op orde is van deze omgevingen. Dit kan gedaan worden door met vijf
+                    onderdelen rekening te houden.</p>
             </div>
         </div>
     </div>
 
-    <div id="framework" class="row">
+    <div class="row">
         <div class="col-9">
             <div class="block">
                 <h2 class="h2">1. Update je frameworks indien mogelijk</h2>
@@ -22,6 +22,7 @@
                     steeds bovenaan de lijst van de
                     <a target="_blank" class="link blue" href="https://www.owasp.org/index.php/Top_10-2017_Top_10"
                        data-toggle="tooltip" title="De wat?">OWASP top 10</a> staat.</p>
+                <span id="php"></span>
             </div>
         </div>
         <div class="col-3">
@@ -30,46 +31,46 @@
                  class="float-left">
         </div>
     </div>
-    <div id="php" class="row">
+    <div class="row">
         <div class="col-3">
             <img src="/img/php.png"
                  style="height: 180px; width: 260px; border-radius: 5px; margin-top: 0; margin-left: 0"
                  class="float-left">
         </div>
         <div class="col-9">
+            <span id="https"></span>
             <div class="block">
                 <h2 class="h2">2. Gebruik een php versie die ondersteunt wordt</h2>
                 <p>Ook je PHP versie kan outdated raken. Door gebruik te maken van een oude php versie, geef je
                     kwaadwillende in sommige gevallen erg makkelijk de kans om gegevens
-                    van jouw omgevingen te achterhalen. Door je website van een SSL-Certificaat te voorzien, maak je
-                    gebruik van deze veiligere manier van verbinden.</p>
+                    van jouw omgevingen te achterhalen. Check daarom via deze applicatie regelmatig de websites op hun php versies.</p>
+
             </div>
         </div>
     </div>
 
-    <div id="https" class="row">
+    <div class="row">
         <div class="col-9">
             <div class="block">
-                <h2 class="h2">3. Voorzie je websites van een SSL-Certicifaat</h2>
+                <h2 class="h2">3. Voorzie je websites van een SSL-Certificaat</h2>
                 <p>Door gebruik te maken van HTTPS (HyperText Transfer Protocol: Secure) worden eventuele gegevens
                     tussen je website en de gebruikers beter afgeschermd, door gebruik te maken van
-                    nieuwere en veiligere protocollen.</p>
-                <p>Lees <a href="" data-toggle="tooltip" title="Yeah, let's go!" class="link blue">hier</a> hoe je dit
-                    regelt.</p>
+                    nieuwere en veiligere protocollen. Op deze manier maakt de website, zoals noodzakelijk is volgens de AVG, gebruik van pseudonimisering: het versleutelen van gevevens.</p>
+            <span id="plugins"></span>
             </div>
         </div>
         <div class="col-3">
             <img src="/img/ssl.png" alt="Groen slotje voor HTTPS" data-toggle="tooltip"
                  title="Een groen slotje geeft aan dat de website een geldig SSL-Certificaat heeft"
-                 style="height: 190px; width: 260px; border-radius: 5px; margin-top: 0; margin-left: -1%"
+                 style="height: 200px; width: 260px; border-radius: 5px; margin-top: 0; margin-left: -1%"
                  class="float-left">
         </div>
     </div>
 
-    <div id="plugins" class="row">
+    <div class="row">
         <div class="col-3">
             <img src="/img/plugins.png"
-                 style="height: 180px; width: 260px; border-radius: 5px; margin-top: 5%; margin-left: 1%"
+                 style="height: 210px; width: 260px; border-radius: 5px; margin-top: 1.5%; margin-left: 1%"
                  class="float-left">
         </div>
         <div class="col-9">
@@ -81,11 +82,12 @@
                 <p>Dit dashboard biedt ook de mogelijkheid om per website in te zien welke extra's er gebruikt worden.
                     Loop deze af en toe even na of de versies niet te oud zijn, of dat er
                     onderdelen tussen staan die niet meer gebruikt worden.</p>
+                <span id="servers"></span>
             </div>
         </div>
     </div>
 
-    <div id="servers" class="row">
+    <div class="row">
         <div class="col-9">
             <div class="block">
                 <h2 class="h2">5. Update je servers!</h2>
@@ -105,14 +107,14 @@
     <div class="row">
         <div class="col-12">
             <div class="block">
-                <h3 class="h3 blue">Bedankt!</h3>
-                <p>Door deze punten de onthouden en toe te passen, zorg jij ervoor dat wij veilig omgaan met gegevens
+                <h3 class="h3 darkblue">Bedankt!</h3>
+                <p>Door deze punten te onthouden en toe te passen, zorg jij ervoor dat wij veilig omgaan met gegevens
                     van anderen. Dat is niet alleen fijn voor de gebruikers,
                     maar zorgt er ook voor dat wij een betrouwbare partij zijn.</p>
             </div>
         </div>
     </div>
 </div>
-
+@endsection
 
 
