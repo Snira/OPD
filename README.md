@@ -10,7 +10,7 @@ How to install:
 3. Run 'composer install' & 'yarn'
 
 4. Make a custom 'connections.php' and place this file in the /config dir in the project.
-    The content of this file should be made op like this:
+    The content of this file should be made up like this:
         
     <?php
 
