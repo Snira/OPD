@@ -53,7 +53,7 @@
                     <a class="h3 linkavg" href="{{route('avg')}}#plugins" data-toggle="tooltip"
                                        target="_blank" title="Dit is belangrijk, klik en lees waarom!">Plugins
                     </a>
-                    @if(count($plugins) < 4)
+                    @if(count($plugins) < 5)
                         <img src="/img/redx.png" class="checkmark" height="20%" data-toggle="tooltip"
                              title="Er zijn problemen met het laden van de plugins">
                         @else

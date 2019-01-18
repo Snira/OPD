@@ -53,7 +53,7 @@ class Website
     {
         $data = $this->laravel();
         if (!$data) {
-            $data = $this->drupal();
+            $data = false;
         }
         return $data;
     }
@@ -61,7 +61,7 @@ class Website
     /**
      * If the used framework is Laravel, this returns it's version
      *
-     * @return bool|null|string
+     * @return mixed
      */
     public function laravel()
     {
@@ -70,6 +70,10 @@ class Website
             $this->framework = 'Laravel';
             return substr($data, -7);
         }
+        elseif(substr($data,0,3) == 'PHP'){
+            return 'error';
+        }
+
         return null;
     }
 
@@ -78,18 +82,18 @@ class Website
      *
      * @return bool|null|string
      */
-    public function drupal()
-    {
-        $data = (string)$this->run("drush version");
-        if (!$this->ssh->getExitStatus()) {
-            $this->framework = 'Drupal';
-            $parse = substr($data, -8);
-            $parse2 = substr($parse, 0, 5);
-
-            return $parse2;
-        }
-        return null;
-    }
+//    public function drupal()
+//    {
+//        $data = (string)$this->run("drush version");
+//        if (!$this->ssh->getExitStatus()) {
+//            $this->framework = 'Drupal';
+//            $parse = substr($data, -8);
+//            $parse2 = substr($parse, 0, 5);
+//
+//            return $parse2;
+//        }
+//        return null;
+//    }
 
     /**
      *  Returns all used php plugins of website instance
@@ -149,13 +153,24 @@ class Website
     public function symfonyhttp()
     {
         $data = explode("\n", $this->run('composer show symfony/http-foundation'));
-        return substr($data[3], 14, 6);
+        if (count($data) > 3){
+            return substr($data[3], 14, 6);
+        }
+        else{
+            return null;
+        }
+
     }
 
     public function polyfill()
     {
         $data = explode("\n", $this->run('composer show symfony/polyfill-php56'));
-        return substr($data[3], 14, 6);
+        if (count($data) > 3){
+            return substr($data[3], 14, 6);
+        }
+        else{
+            return null;
+        }
     }
 
 
