@@ -5,6 +5,7 @@ namespace App;
 use phpDocumentor\Reflection\Types\Boolean;
 use Spatie\SslCertificate\SslCertificate;
 use phpseclib\Net\SSH2;
+use Spatie\Dns;
 
 
 class Website
