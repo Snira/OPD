@@ -13,7 +13,7 @@ How to install:
     The content of this file should be made up like this:
  
         
-    <?php
+    ```
 
 return [
         [
@@ -22,12 +22,11 @@ return [
             'username' => 'Username of your server login',
             'password' => 'Password of your server login'
         ],
-    * You can keep adding arrays like the one above within this array for every server you want to monitor. *
 
         ];
 
 
-    ?>
+   ```
 
 5. Run 'php artisan serve' to serve the OPD locally, or use any other web server of choice.
 
