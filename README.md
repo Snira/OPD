@@ -32,4 +32,6 @@ How to install:
 
 5. Run 'php artisan serve' to serve the OPD locally, or use any other web server of choice.
 
+6. When running in production, make sure the fingerprint of the application (it connects using SSH) is added to known_hosts of the servers you want to monitor
+
 The Online Protection Dashboard should now be running!
