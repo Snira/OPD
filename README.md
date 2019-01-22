@@ -22,6 +22,7 @@ How to install:
             'username' => 'Username of your server login',
             'password' => 'Password of your server login'
         ],
+        *You can keep adding arrays like the one above here*
 
         ];
 
