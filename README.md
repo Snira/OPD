@@ -13,9 +13,9 @@ How to install:
     The content of this file should be made up like this:
  
         
-    ```
+    
 
-return [
+```return [
         [
             'ipaddr' => 'The IP Adress of your server',
             'port' => The port you whish to use (this variable is nullable),
