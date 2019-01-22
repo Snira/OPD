@@ -15,7 +15,8 @@ How to install:
         
     
 
-```return [
+```
+    return [
         [
             'ipaddr' => 'The IP Adress of your server',
             'port' => The port you whish to use (this variable is nullable),
