@@ -1,7 +1,19 @@
 @php
-    $versionf = (float)$website->frameworkVersion();
+    $versionf = $website->frameworkVersion();
+    if ($versionf == null){$versionf = 'Framework onbekend';
+    $latestf = 'Onbekend';
+    $statusf = 1.1;
+    }
+    elseif($versionf == 'error'){
+        $versionf = 'Laravel: Kan versie niet ophalen: het artisan bestand is beschadigd';
+        $latestf = (float)$latestVersions->laravel();
+    $statusf = 1.1;
+    }
+    else{
     $latestf = (float)$latestVersions->{$website->framework}();
-    $statusf = $latestf - $versionf;
+    $statusf = $latestf - (float)$versionf;
+    }
+
 
     $versionp = (float) $website->phpVersion();
     $latestp = (float) $latestVersions->php();
