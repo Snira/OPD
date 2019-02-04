@@ -12,7 +12,7 @@
                 <div class="block">
                     <a href="{{route('server',$server->nodeName())}}" data-toggle="tooltip" class="h1 link"
                        title="Klik om de pagina in te zien voor info over server en bijbehorende websites">{{$server->nodeName()}}</a>
-                    <img src="/img/warning.png" class="checkmark" data-toggle="tooltip"
+                    <img src="/img/checkmark.png" class="checkmark" data-toggle="tooltip"
                          title="De Server heeft aandacht nodig">
                     <p>{{$server->OSVersion()}}</p>
                     <hr>

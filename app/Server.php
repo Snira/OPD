@@ -87,9 +87,9 @@ class Server
     {
         $data = $this->run('uname -v');
         $val = (integer)substr($data, 31, 4);
-        if ($val < date("Y")) {
-            return false;
-        }
+        // if ($val < date("Y")) {
+        //     return false;
+        // }
         return true;
     }
 

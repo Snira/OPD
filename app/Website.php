@@ -53,7 +53,7 @@ class Website
     {
         $data = $this->laravel();
         if (!$data) {
-            $data = $this->drupal();
+            $data = null;
         }
         return $data;
     }
@@ -72,25 +72,6 @@ class Website
         }
         return null;
     }
-
-    /**
-     * If the used framework is Drupal, this returns it's version
-     *
-     * @return bool|null|string
-     */
-    public function drupal()
-    {
-        $data = (string)$this->run("drush version");
-        if (!$this->ssh->getExitStatus()) {
-            $this->framework = 'Drupal';
-            $parse = substr($data, -8);
-            $parse2 = substr($parse, 0, 5);
-
-            return $parse2;
-        }
-        return null;
-    }
-
     /**
      *  Returns all used php plugins of website instance
      *
@@ -126,7 +107,10 @@ class Website
     {
         $this->run('ping -c 3 ' . $this->name());
         if (!$this->ssh->getExitStatus()) {
-            return true;
+            if($this->directory != "OPD.nl"){
+                return true;
+            }
+            return false;
         }
         return false;
     }

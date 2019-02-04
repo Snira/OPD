@@ -1,7 +1,15 @@
 @php
     $versionf = (float)$website->frameworkVersion();
-    $latestf = (float)$latestVersions->{$website->framework}();
-    $statusf = $latestf - $versionf;
+    if($versionf == null){
+        $versionf = 'Laravel x.x, kan versie niet ophalen. Check je php artisan file';
+    }
+    $latestf = (float)$latestVersions->laravel();
+    if (!strlen($versionf) > 8 ){
+        $statusf = $latestf - $versionf;
+    }else{
+        $statusf = 2;
+    }
+
 
     $versionp = (float) $website->phpVersion();
     $latestp = (float) $latestVersions->php();
@@ -42,7 +50,7 @@
                     target="_blank" title="Dit is belangrijk, klik en lees waarom!">Framework
                </a>
             </td>
-            <td>{{$website->framework}} {{$versionf}}</td>
+            <td>{{$website->framework}} {{isset($versionf) ? $versionf : ''}}</td>
             <td>{{$website->framework}} {{$latestf}}</td>
         </tr>
         <tr>
